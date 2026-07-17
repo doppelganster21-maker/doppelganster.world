@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000" />
+  <title>Create SEO Blog Post | Doppelganger Admin</title>
+  <link rel="icon" id="siteFavicon" type="image/png" href="/logo-dark.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="theme.js"></script>
+  <!-- PERFORMANCE: Clerk deferred -->
+  <script>
+    window.addEventListener('load', function() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.crossOrigin = 'anonymous';
+      s.setAttribute('data-clerk-publishable-key', 'pk_test_bWFnaWNhbC1lc2NhcmdvdC02LmNsZXJrLmFjY291bnRzLmRldiQ');
+      s.onload = function() { window.Clerk && window.Clerk.load(); };
+      s.src = 'https://magical-escargot-6.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js';
+      document.head.appendChild(s);
+    });
+  </script>
+  <script>
+    // Security redirect: immediately eject non-owner before DOM parses
+    const AUTH_KEY = 'doppel_google_user';
+    try {
+      const raw = localStorage.getItem(AUTH_KEY);
+      const user = raw ? JSON.parse(raw) : null;
+      if (!user || user.email.toLowerCase() !== 'doppelganster21@gmail.com') {
+        alert("Access Denied. Only the platform owner can access this page.");
+        window.location.replace('/');
+      }
+    } catch (e) {
+      window.location.replace('/');
+    }
+  </script>
+</head>
+<body>
+
+  <!-- HEADER & NAVBAR -->
+  <header class="navbar">
+    <div class="nav-wrapper">
+      <a href="/" class="brand" title="Doppelganger Home">
+        <div class="logo">
+          <img src="/logo-dark.png" alt="Doppelganger Logo" class="logo-dark" />
+          <img src="/logo-light.png" alt="Doppelganger Logo" class="logo-light" />
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Doppelganger</span>
+          <p>Find Your Real-Life Double</p>
+        </div>
+      </a>
+
+      <div class="nav-controls">
+        <nav class="main-nav" aria-label="Main Navigation">
+          <a href="/" title="Home Page">Home</a>
+          <a href="/blog.html" title="Blog Page">Blog</a>
+          <a href="/AboutUs.html" title="About Us Page">About Us</a>
+        </nav>
+        <div id="authNavContainer" style="display: flex; align-items: center; gap: 8px; margin-right: 6px;">
+          <div id="userProfileBadge" style="display: flex; align-items: center; gap: 8px;">
+            <div id="userAvatar" style="width: 30px; height: 30px; border-radius: 50%; background: var(--accent-gradient); color: #fff; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center;">A</div>
+            <span id="userDisplayName" style="font-size: 13px; font-weight: 600; color: var(--text-main);">Admin</span>
+            <button id="signOutBtn" type="button" title="Sign out" style="background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 12px; text-decoration: underline;">Sign Out</button>
+          </div>
+        </div>
+
+        <button class="theme-toggle-btn" type="button"></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Ambient Lighting Background -->
+  <div class="ambient-glow ambient-glow-1"></div>
+  <div class="ambient-glow ambient-glow-2"></div>
+
+  <div class="container page-fade-in">
+    <section class="blog-hero-section" style="margin-bottom: 24px; text-align: center; padding: 36px 24px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 24px; box-shadow: var(--shadow-card);">
+      <div class="badge-pill" style="margin: 0 auto 12px; width: fit-content; display: flex; align-items: center; gap: 8px; background: var(--badge-bg); color: var(--badge-text); padding: 4px 12px; border-radius: 50px; font-size: 12px; font-weight: 700;">
+        👑 Platform Owner Portal
+      </div>
+      <h1 style="font-size: 32px; font-weight: 800; line-height: 1.2; margin-bottom: 12px; letter-spacing: -0.02em;">
+        Create <span class="gradient-text">SEO Optimized</span> Blog Post
+      </h1>
+      <p style="color: var(--text-secondary); max-width: 580px; margin: 0 auto; font-size: 15px; line-height: 1.5;">
+        Write articles with automatic static HTML page generation, structured JSON-LD schemas, Open Graph tags, and live search previews.
+      </p>
+    </section>
+
+    <div class="editor-container">
+      <!-- LEFT COLUMN: EDITOR FORM -->
+      <div class="card spotlight-card editor-form-card">
+        <form id="blogForm" autocomplete="off">
+          <div class="editor-form-group">
+            <label for="blogTitle">Article Title</label>
+            <input type="text" id="blogTitle" class="editor-input" placeholder="e.g. Why Do Unrelated People Look Identical?" required />
+          </div>
+
+          <div class="editor-form-group">
+            <label for="blogSlug">SEO URL Slug (Lowercase & Hyphens)</label>
+            <input type="text" id="blogSlug" class="editor-input" placeholder="e.g. why-do-unrelated-people-look-identical" required />
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="editor-form-group">
+              <label for="blogCategory">Category</label>
+              <select id="blogCategory" class="editor-select">
+                <option value="Science & DNA">Science & DNA</option>
+                <option value="Folklore & Tech">Folklore & Tech</option>
+                <option value="Slang & Pop Culture">Slang & Pop Culture</option>
+                <option value="Genetics & Math">Genetics & Math</option>
+                <option value="How-To Guide">How-To Guide</option>
+                <option value="Celebrity & Pop Culture">Celebrity & Pop Culture</option>
+                <option value="Book Review">Book Review</option>
+              </select>
+            </div>
+            <div class="editor-form-group">
+              <label for="blogReadTime">Estimated Read Time</label>
+              <input type="text" id="blogReadTime" class="editor-input" placeholder="e.g. 5 Min Read" value="5 Min Read" required />
+            </div>
+          </div>
+
+          <div class="editor-form-group">
+            <label for="blogKeywords">SEO Keywords (Comma Separated)</label>
+            <input type="text" id="blogKeywords" class="editor-input" placeholder="e.g. doppelganger science, twin strangers, look-alike DNA" required />
+          </div>
+
+          <div class="editor-form-group">
+            <label for="blogExcerpt">Excerpt / SEO Meta Description (120-160 chars recommended)</label>
+            <textarea id="blogExcerpt" class="editor-textarea" style="height: 90px; resize: none;" placeholder="Provide a compelling summary of the article to appear in Google search results..." required></textarea>
+          </div>
+
+          <div class="editor-form-group">
+            <label for="blogImageFile">Featured Image (Upload to Cloudinary)</label>
+            <div class="dropzone" id="blogDropzone" style="padding: 24px; border: 2px dashed var(--border-color); border-radius: 14px; text-align: center; cursor: pointer; transition: all 0.2s ease;">
+              <input id="blogImageFile" type="file" accept="image/*" style="display: none;" />
+              <input id="blogImageUrl" type="hidden" />
+              <div id="dropzoneText">
+                <span style="font-size: 28px; display: block; margin-bottom: 8px;">🖼️</span>
+                <p style="font-size: 13.5px; font-weight: 500;">Drag & drop an image here or <strong style="color: var(--accent-primary);">click to browse</strong></p>
+                <span style="font-size: 11.5px; color: var(--text-muted);">Supports JPG, PNG, WEBP (Max 5MB)</span>
+              </div>
+              <div id="imageUploadProgress" style="display: none; align-items: center; justify-content: center; gap: 8px; font-size: 13px;">
+                <svg class="spinner" width="16" height="16" viewBox="0 0 50 50" style="animation: rotate 1s linear infinite;"><circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5" stroke="var(--accent-primary)" style="stroke-linecap: round;"></circle></svg>
+                Uploading image to Cloudinary...
+              </div>
+              <div id="imageUploadedPreview" style="display: none;">
+                <img id="uploadedPreviewImg" src="" alt="Featured Preview" style="width: 100%; max-height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 8px; border: 1px solid var(--border-color);" />
+                <button type="button" class="btn secondary" id="removeBlogImgBtn" style="padding: 4px 10px; font-size: 11px; margin: 0 auto; display: block;">Change Banner Image</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="editor-form-group">
+            <label for="blogBody">Article Body (HTML Tags Supported, e.g. &lt;p&gt;, &lt;h2&gt;, &lt;ul&gt;)</label>
+            <textarea id="blogBody" class="editor-textarea body-editor" placeholder="Write article content using standard HTML blocks...&#10;&#10;<h2>Section Heading</h2>&#10;<p>Paragraph text here...</p>" required></textarea>
+          </div>
+
+          <button type="submit" class="btn primary" id="publishBlogBtn" style="width: 100%; margin-top: 10px; padding: 14px 20px; font-size: 15px; font-weight: 800;">
+            🚀 Publish & Generate Static SEO Page
+          </button>
+
+          <div id="editorStatus" class="status-box" style="display: none; margin-top: 14px;" aria-live="polite"></div>
+        </form>
+      </div>
+
+      <!-- RIGHT COLUMN: SEO PREVIEWS & CHECKS -->
+      <div class="editor-preview-card">
+        <!-- Google Preview -->
+        <div class="card" style="padding: 24px !important; margin-bottom: 0;">
+          <div class="preview-box-title">
+            🔍 Google Search Result Preview
+          </div>
+          <div class="google-preview-box">
+            <div class="google-url">https://www.doppelganger.world/<span id="googleSlugPreview">slug</span>.html</div>
+            <div class="google-title" id="googleTitlePreview">Article Title Here | Doppelganger World</div>
+            <div class="google-description" id="googleDescPreview">Provide a meta description in the excerpt field to see how this page snippet will display in Google searches.</div>
+          </div>
+        </div>
+
+        <!-- Social Share Card -->
+        <div class="card" style="padding: 24px !important; margin-bottom: 0;">
+          <div class="preview-box-title">
+            🌐 Social Share Card (Open Graph)
+          </div>
+          <div class="social-preview-box">
+            <div class="social-img-placeholder" id="socialImgContainer">
+              <span>Banner Image Preview</span>
+            </div>
+            <div class="social-meta">
+              <div class="social-domain">doppelganger.world</div>
+              <div class="social-title" id="socialTitlePreview">Article Title Here | Doppelganger World</div>
+              <div class="social-desc" id="socialDescPreview">Detailed description of the article will show up on Facebook, X/Twitter, and LinkedIn.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SEO Checklist -->
+        <div class="card" style="padding: 24px !important; margin-bottom: 0;">
+          <div class="preview-box-title">
+            ⚡ Live SEO Analyzer Score: <span id="seoScoreLabel" style="font-weight: 800; margin-left: auto;">0%</span>
+          </div>
+          <div class="seo-checklist-box">
+            <div class="seo-check-item failed" id="checkTitle">
+              <span class="seo-check-icon"></span>
+              <span>Title length is ideal (40-60 characters)</span>
+            </div>
+            <div class="seo-check-item failed" id="checkSlug">
+              <span class="seo-check-icon"></span>
+              <span>URL Slug contains only lowercase & hyphens</span>
+            </div>
+            <div class="seo-check-item failed" id="checkDesc">
+              <span class="seo-check-icon"></span>
+              <span>Meta description is optimal (120-160 characters)</span>
+            </div>
+            <div class="seo-check-item failed" id="checkKeywords">
+              <span class="seo-check-icon"></span>
+              <span>SEO keywords are specified</span>
+            </div>
+            <div class="seo-check-item failed" id="checkBody">
+              <span class="seo-check-icon"></span>
+              <span>Body word count is substantial (min 300 words)</span>
+            </div>
+            <div class="seo-check-item failed" id="checkImage">
+              <span class="seo-check-icon"></span>
+              <span>Featured banner image is uploaded</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-links">
+      <a href="/privacy.html" title="Privacy Policy">Privacy Policy</a>
+      <a href="/Term%26condtion.html" title="Terms & Conditions">Terms & Conditions</a>
+      <a href="/AboutUs.html" title="About Us">About Us</a>
+    </div>
+    <div class="footer-copy">
+      &copy; <span id="year"></span> Doppelganger.world. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+      
+      const titleInput = document.getElementById('blogTitle');
+      const slugInput = document.getElementById('blogSlug');
+      const excerptInput = document.getElementById('blogExcerpt');
+      const keywordsInput = document.getElementById('blogKeywords');
+      const bodyInput = document.getElementById('blogBody');
+      const imageUrlInput = document.getElementById('blogImageUrl');
+      const fileInput = document.getElementById('blogImageFile');
+      const dropzone = document.getElementById('blogDropzone');
+      const removeImgBtn = document.getElementById('removeBlogImgBtn');
+
+      const googleTitle = document.getElementById('googleTitlePreview');
+      const googleSlug = document.getElementById('googleSlugPreview');
+      const googleDesc = document.getElementById('googleDescPreview');
+
+      const socialTitle = document.getElementById('socialTitlePreview');
+      const socialDesc = document.getElementById('socialDescPreview');
+      const socialImgContainer = document.getElementById('socialImgContainer');
+
+      // Helper: Auto-generate slug from title
+      titleInput.addEventListener('input', () => {
+        const title = titleInput.value;
+        
+        // Generate slug: lowercase, replace non-alphanumeric with hyphen, collapse duplicate hyphens
+        const generatedSlug = title
+          .toLowerCase()
+          .replace(/[^a-z0-9\s-]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-');
+          
+        slugInput.value = generatedSlug;
+        
+        // Update previews
+        googleTitle.textContent = title ? `${title} | Doppelganger World` : 'Article Title Here | Doppelganger World';
+        socialTitle.textContent = title ? `${title} | Doppelganger World` : 'Article Title Here | Doppelganger World';
+        googleSlug.textContent = generatedSlug || 'slug';
+
+        analyzeSEO();
+      });
+
+      slugInput.addEventListener('input', () => {
+        // Enforce slug characters
+        slugInput.value = slugInput.value.toLowerCase().replace(/[^a-z0-9-_]/g, '');
+        googleSlug.textContent = slugInput.value || 'slug';
+        analyzeSEO();
+      });
+
+      excerptInput.addEventListener('input', () => {
+        const val = excerptInput.value;
+        googleDesc.textContent = val || 'Provide a meta description in the excerpt field to see how this page snippet will display in Google searches.';
+        socialDesc.textContent = val || 'Detailed description of the article will show up on Facebook, X/Twitter, and LinkedIn.';
+        analyzeSEO();
+      });
+
+      keywordsInput.addEventListener('input', analyzeSEO);
+      bodyInput.addEventListener('input', analyzeSEO);
+
+      // Drag & Drop Image Upload to Cloudinary
+      dropzone.addEventListener('click', () => {
+        if (!imageUrlInput.value) {
+          fileInput.click();
+        }
+      });
+
+      dropzone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropzone.style.borderColor = 'var(--accent-primary)';
+      });
+
+      dropzone.addEventListener('dragleave', () => {
+        dropzone.style.borderColor = 'var(--border-color)';
+      });
+
+      dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.style.borderColor = 'var(--border-color)';
+        if (e.dataTransfer.files.length > 0 && !imageUrlInput.value) {
+          uploadBlogImage(e.dataTransfer.files[0]);
+        }
+      });
+
+      fileInput.addEventListener('change', () => {
+        if (fileInput.files.length > 0) {
+          uploadBlogImage(fileInput.files[0]);
+        }
+      });
+
+      removeImgBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        imageUrlInput.value = '';
+        fileInput.value = '';
+        document.getElementById('imageUploadedPreview').style.display = 'none';
+        document.getElementById('dropzoneText').style.display = 'block';
+        socialImgContainer.innerHTML = '<span>Banner Image Preview</span>';
+        analyzeSEO();
+      });
+
+      async function uploadBlogImage(file) {
+        const textContainer = document.getElementById('dropzoneText');
+        const progressContainer = document.getElementById('imageUploadProgress');
+        
+        textContainer.style.display = 'none';
+        progressContainer.style.display = 'flex';
+
+        const userRaw = localStorage.getItem(AUTH_KEY);
+        const user = userRaw ? JSON.parse(userRaw) : null;
+        if (!user) return;
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+          const res = await fetch('/api/blog-upload', {
+            method: 'POST',
+            headers: {
+              'x-user-email': user.email
+            },
+            body: formData
+          });
+          const result = await res.json();
+          if (!res.ok) throw new Error(result.error || 'Failed to upload blog banner.');
+
+          imageUrlInput.value = result.url;
+          
+          progressContainer.style.display = 'none';
+          document.getElementById('uploadedPreviewImg').src = result.url;
+          document.getElementById('imageUploadedPreview').style.display = 'block';
+          
+          // Update social preview banner
+          socialImgContainer.innerHTML = `<img src="${result.url}" alt="OG Banner" style="width:100%;height:100%;object-fit:cover;" />`;
+
+          analyzeSEO();
+        } catch (err) {
+          alert('Upload failed: ' + err.message);
+          progressContainer.style.display = 'none';
+          textContainer.style.display = 'block';
+        }
+      }
+
+      // Real-time SEO Scoring & Checklist
+      function analyzeSEO() {
+        let score = 0;
+        const checks = {
+          title: false,
+          slug: false,
+          desc: false,
+          keywords: false,
+          body: false,
+          image: false
+        };
+
+        // Title check (40-60 chars)
+        const titleLen = titleInput.value.length;
+        if (titleLen >= 40 && titleLen <= 60) {
+          checks.title = true;
+          score += 15;
+        }
+
+        // Slug check (lowercase, hyphens/digits/letters only)
+        const slugVal = slugInput.value;
+        const slugRegex = /^[a-z0-9-_]+$/;
+        if (slugVal && slugRegex.test(slugVal)) {
+          checks.slug = true;
+          score += 15;
+        }
+
+        // Excerpt/Meta Desc check (120-160 chars)
+        const descLen = excerptInput.value.length;
+        if (descLen >= 120 && descLen <= 160) {
+          checks.desc = true;
+          score += 20;
+        }
+
+        // Keywords check
+        if (keywordsInput.value.trim().length > 0) {
+          checks.keywords = true;
+          score += 15;
+        }
+
+        // Body count check (min 300 words)
+        const wordCount = bodyInput.value.trim().split(/\s+/).filter(w => w.length > 0).length;
+        if (wordCount >= 300) {
+          checks.body = true;
+          score += 20;
+        }
+
+        // Image check
+        if (imageUrlInput.value) {
+          checks.image = true;
+          score += 15;
+        }
+
+        // Update Checklist UI
+        updateCheckItem('checkTitle', checks.title);
+        updateCheckItem('checkSlug', checks.slug);
+        updateCheckItem('checkDesc', checks.desc);
+        updateCheckItem('checkKeywords', checks.keywords);
+        updateCheckItem('checkBody', checks.body);
+        updateCheckItem('checkImage', checks.image);
+
+        // Update Score Label
+        const scoreEl = document.getElementById('seoScoreLabel');
+        scoreEl.textContent = `${score}%`;
+        if (score >= 80) {
+          scoreEl.style.color = 'var(--status-success-text)';
+        } else if (score >= 50) {
+          scoreEl.style.color = 'var(--status-info-text)';
+        } else {
+          scoreEl.style.color = 'var(--status-error-text)';
+        }
+      }
+
+      function updateCheckItem(id, passed) {
+        const el = document.getElementById(id);
+        if (passed) {
+          el.className = 'seo-check-item passed';
+        } else {
+          el.className = 'seo-check-item failed';
+        }
+      }
+
+      // Submit Blog Form
+      const form = document.getElementById('blogForm');
+      const statusEl = document.getElementById('editorStatus');
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        statusEl.className = 'status-box info';
+        statusEl.textContent = 'Generating SEO elements & building static page...';
+        statusEl.style.display = 'block';
+
+        const title = titleInput.value.trim();
+        const slug = slugInput.value.trim();
+        const category = document.getElementById('blogCategory').value;
+        const readTime = document.getElementById('blogReadTime').value.trim();
+        const keywords = keywordsInput.value.trim();
+        const description = excerptInput.value.trim();
+        const imageUrl = imageUrlInput.value;
+        const bodyContent = bodyInput.value.trim();
+
+        if (!imageUrl) {
+          statusEl.className = 'status-box error';
+          statusEl.textContent = 'Error: A featured banner image is required for Open Graph indexing.';
+          return;
+        }
+
+        const userRaw = localStorage.getItem(AUTH_KEY);
+        const user = userRaw ? JSON.parse(userRaw) : null;
+        if (!user) return;
+
+        try {
+          const res = await fetch('/api/blogs', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-user-email': user.email
+            },
+            body: JSON.stringify({
+              title,
+              slug,
+              description,
+              keywords,
+              category,
+              readTime,
+              imageUrl,
+              bodyContent
+            })
+          });
+
+          const result = await res.json();
+          if (!res.ok) throw new Error(result.error || 'Server error publishing post.');
+
+          statusEl.className = 'status-box success';
+          statusEl.innerHTML = `🎉 Success! Blog published. View page: <a href="/${slug}.html" target="_blank" style="text-decoration: underline; font-weight:700;">/${slug}.html</a>`;
+          
+          // Clear form after success
+          setTimeout(() => {
+            form.reset();
+            imageUrlInput.value = '';
+            document.getElementById('imageUploadedPreview').style.display = 'none';
+            document.getElementById('dropzoneText').style.display = 'block';
+            socialImgContainer.innerHTML = '<span>Banner Image Preview</span>';
+            analyzeSEO();
+          }, 3000);
+
+        } catch (err) {
+          statusEl.className = 'status-box error';
+          statusEl.textContent = 'Publish failed: ' + err.message;
+        }
+      });
+
+      // Sign out listener
+      const signOutBtn = document.getElementById('signOutBtn');
+      if (signOutBtn) {
+        signOutBtn.addEventListener('click', async () => {
+          if (window.Clerk && typeof window.Clerk.signOut === 'function') {
+            try { await window.Clerk.signOut(); } catch {}
+          }
+          localStorage.removeItem(AUTH_KEY);
+          window.location.replace('/');
+        });
+      }
+    });
+  </script>
+</body>
+</html>

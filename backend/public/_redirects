@@ -1,0 +1,16 @@
+# Pretty URLs → actual HTML files
+/blog          /blog.html              200
+/about         /AboutUs.html           200
+/privacy       /privacy.html           200
+/terms         /terms.html             200
+/contact       /contact.html           200
+/faq           /faq.html               200
+/cookie-policy /cookie-policy.html     200
+/disclaimer    /disclaimer.html        200
+/sitemap-page  /sitemap.html           200
+
+# Legacy redirect for old broken Terms URL
+/Term%26condtion.html /terms.html       301
+
+# SPA fallback
+/*             /index.html             200

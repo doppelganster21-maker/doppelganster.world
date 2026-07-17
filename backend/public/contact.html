@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+
+  <title>Contact Us – Doppelganger.world | Get in Touch</title>
+  <meta name="description" content="Contact Doppelganger.world for questions, partnerships, or support. Reach our team at contact@doppelganger.world — we respond within 24–48 hours." />
+  <meta name="keywords" content="contact doppelganger, doppelganger support, get in touch, doppelganger world contact" />
+  <meta name="author" content="Doppelganger.world" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="canonical" href="https://www.doppelganger.world/contact.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.doppelganger.world/contact.html" />
+  <meta property="og:title" content="Contact Us – Doppelganger.world" />
+  <meta property="og:description" content="Have a question or partnership idea? Reach out to the Doppelganger.world team — we''d love to hear from you." />
+  <meta property="og:image" content="https://www.doppelganger.world/logo-dark.png" />
+  <meta property="og:site_name" content="Doppelganger.world" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact Us – Doppelganger.world" />
+  <meta name="twitter:description" content="Reach out to our team for support, partnerships, or press inquiries." />
+  <meta name="twitter:image" content="https://www.doppelganger.world/logo-dark.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ContactPage",
+        "name": "Contact Doppelganger.world",
+        "url": "https://www.doppelganger.world/contact.html",
+        "description": "Contact us for questions, partnerships, or support regarding the Doppelganger.world platform.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "contact@doppelganger.world",
+          "contactType": "customer support",
+          "availableLanguage": "English"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.doppelganger.world/"},
+          {"@type": "ListItem", "position": 2, "name": "Contact", "item": "https://www.doppelganger.world/contact.html"}
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <link rel="icon" id="siteFavicon" type="image/png" href="/logo-dark.png" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/ad-styles.css" />
+  <link rel="stylesheet" href="/cookie-consent.css" />
+    <!-- PERFORMANCE: Non-blocking Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" /></noscript>
+  <script src="/theme.js"></script>
+  <script async crossorigin="anonymous"
+    data-clerk-publishable-key="pk_test_bWFnaWNhbC1lc2NhcmdvdC02LmNsZXJrLmFjY291bnRzLmRldiQ"
+    onload="window.Clerk.load()"
+    src="https://magical-escargot-6.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js">
+  </script>
+
+  <style>
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    @media (max-width: 768px) {
+      .contact-layout { grid-template-columns: 1fr; }
+    }
+    .contact-form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 32px;
+      backdrop-filter: blur(12px);
+    }
+    .contact-info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 32px;
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .contact-info-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .contact-info-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--badge-bg);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 20px;
+    }
+    .contact-info-item h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+    .contact-info-item p, .contact-info-item a {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .contact-info-item a {
+      color: var(--accent-primary);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .success-message {
+      display: none;
+      background: var(--status-success-bg);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      color: var(--status-success-text);
+      font-weight: 600;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-wrapper">
+      <a href="/" class="brand" title="Doppelganger Home">
+        <div class="logo">
+          <img src="/logo-dark.png" alt="Doppelganger Logo" class="logo-dark" />
+          <img src="/logo-light.png" alt="Doppelganger Logo" class="logo-light" />
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Doppelganger</span>
+          <p>Find Your Real-Life Double</p>
+        </div>
+      </a>
+      <div class="nav-controls">
+        <nav class="main-nav" aria-label="Main Navigation">
+          <a href="/" title="Home">Home</a>
+          <a href="/blog.html" title="Blog">Blog</a>
+          <a href="/AboutUs.html" title="About Us">About</a>
+          <a href="/faq.html" title="FAQ">FAQ</a>
+          <a href="/contact.html" class="active" title="Contact">Contact</a>
+        </nav>
+        <div id="authNavContainer" style="display:flex;align-items:center;gap:8px;margin-right:6px;">
+          <button id="googleSignInBtn" class="btn secondary" type="button" style="padding:6px 14px;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;border-radius:50px;">
+            <svg width="15" height="15" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+            Google Sign In
+          </button>
+          <div id="userProfileBadge" style="display:none;align-items:center;gap:8px;">
+            <div id="userAvatar" style="width:30px;height:30px;border-radius:50%;background:var(--accent-gradient);color:#fff;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;">G</div>
+            <span id="userDisplayName" style="font-size:13px;font-weight:600;color:var(--text-main);max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">User</span>
+            <button id="signOutBtn" type="button" title="Sign out" style="background:transparent;border:none;color:var(--text-muted);cursor:pointer;font-size:12px;text-decoration:underline;">Sign Out</button>
+          </div>
+        </div>
+        <button class="theme-toggle-btn" type="button" aria-label="Toggle dark and light mode"></button>
+        <button class="mobile-menu-btn" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg class="icon-hamburger" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"><line x1="9" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="12" y1="18" x2="20" y2="18"/></svg>
+          <svg class="icon-close" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="ambient-glow ambient-glow-1"></div>
+  <div class="ambient-glow ambient-glow-2"></div>
+
+  <div class="container">
+    <div class="ad-banner-wrap" style="margin-bottom:24px;">
+      <div id="ad-leaderboard-top" class="ad-section ad-container ad-leaderboard"></div>
+    </div>
+
+    <div id="breadcrumb-container" style="margin-bottom:16px;"></div>
+
+    <div style="max-width:1100px;margin:0 auto;">
+      <div class="section-header" style="margin-bottom:28px;">
+        <h1 style="font-size:32px;font-weight:800;color:var(--text-main);margin-bottom:8px;">Get in Touch</h1>
+        <p style="color:var(--text-secondary);font-size:16px;">Have a question, feedback, or collaboration idea? We''d love to hear from you.</p>
+      </div>
+
+      <div class="contact-layout">
+        <div class="contact-form-card">
+          <h2 style="font-size:20px;font-weight:700;color:var(--text-main);margin-bottom:24px;">Send Us a Message</h2>
+          <form id="contactForm" novalidate>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="contactName">Your Full Name <span style="color:var(--accent-primary);">*</span></label>
+                <input id="contactName" name="name" type="text" placeholder="e.g. Alex Morgan" required autocomplete="name" />
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Email Address <span style="color:var(--accent-primary);">*</span></label>
+                <input id="contactEmail" name="email" type="email" placeholder="alex@example.com" required autocomplete="email" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contactSubject">Subject</label>
+              <select id="contactSubject" name="subject">
+                <option value="General Inquiry">General Inquiry</option>
+                <option value="Report an Issue">Report an Issue</option>
+                <option value="Partnership">Partnership / Collaboration</option>
+                <option value="Press">Press &amp; Media</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Message <span style="color:var(--accent-primary);">*</span></label>
+              <textarea id="contactMessage" name="message" rows="6" placeholder="Tell us how we can help..." required style="resize:vertical;min-height:140px;"></textarea>
+            </div>
+            <button type="submit" class="btn" style="width:100%;margin-top:8px;" id="contactSubmitBtn">
+              <span>Send Message</span>
+            </button>
+            <div class="success-message" id="contactSuccess" role="alert">
+              ✅ Message sent! We''ll get back to you within 24–48 hours.
+            </div>
+            <div id="contactError" style="display:none;margin-top:12px;padding:12px;background:var(--status-error-bg);border-radius:10px;color:var(--status-error-text);font-size:14px;"></div>
+          </form>
+        </div>
+
+        <div class="contact-info-card">
+          <h2 style="font-size:20px;font-weight:700;color:var(--text-main);margin-bottom:4px;">Contact Information</h2>
+
+          <div class="contact-info-item">
+            <div class="contact-info-icon">✉️</div>
+            <div>
+              <h4>Email</h4>
+              <a href="mailto:contact@doppelganger.world">contact@doppelganger.world</a>
+              <p style="margin-top:4px;">For all general inquiries and support.</p>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-info-icon">⏱️</div>
+            <div>
+              <h4>Response Time</h4>
+              <p>We typically respond within <strong>24–48 hours</strong> on business days.</p>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-info-icon">❓</div>
+            <div>
+              <h4>Quick Answers</h4>
+              <p>Check our <a href="/faq.html">FAQ page</a> — most common questions are answered there.</p>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-info-icon">🤝</div>
+            <div>
+              <h4>Partnerships &amp; Press</h4>
+              <p>Select "Partnership" or "Press &amp; Media" in the subject dropdown for faster routing.</p>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-info-icon">🔒</div>
+            <div>
+              <h4>Privacy</h4>
+              <p>We never share your contact details with third parties. Read our <a href="/privacy.html">Privacy Policy</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ad-banner-wrap">
+        <div id="ad-in-article-1" class="ad-section ad-container ad-in-article"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <img src="/logo-dark.png" alt="Doppelganger Logo" class="footer-logo logo-dark" width="36" height="36" />
+          <img src="/logo-light.png" alt="Doppelganger Logo" class="footer-logo logo-light" width="36" height="36" />
+          <span>Doppelganger.world</span>
+        </div>
+        <p class="footer-tagline">Find your real-life look-alike using AI facial matching technology. Connect with your global twin stranger.</p>
+        <p class="footer-contact">✉ <a href="mailto:contact@doppelganger.world">contact@doppelganger.world</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="/">Home</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/AboutUs.html">About Us</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/sitemap.html">Sitemap</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms &amp; Conditions</a>
+        <a href="/cookie-policy.html">Cookie Policy</a>
+        <a href="/disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; <span id="year"></span> Doppelganger.world. All rights reserved.</div>
+      <div class="footer-legal-note">Built with ❤️ by <a href="https://www.linkedin.com/in/javawithumesh" target="_blank" rel="noopener">Umesh Jonwal</a></div>
+    </div>
+  </footer>
+
+  <script src="/script.js" defer></script>
+  <script src="/chat.js" defer></script>
+  <script src="/ad-components.js" defer></script>
+  <script src="/cookie-consent.js" defer></script>
+  <script src="/breadcrumb.js" defer></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6E7PBHRN0P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6E7PBHRN0P');
+  </script>
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window,document,"clarity","script","YOUR_CLARITY_ID");
+  </script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof initBreadcrumb === 'function') {
+        initBreadcrumb([
+          {name: 'Home', url: '/'},
+          {name: 'Contact', url: '/contact.html'}
+        ]);
+      }
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var name = document.getElementById('contactName').value.trim();
+      var email = document.getElementById('contactEmail').value.trim();
+      var subject = document.getElementById('contactSubject').value;
+      var message = document.getElementById('contactMessage').value.trim();
+      var errEl = document.getElementById('contactError');
+      var successEl = document.getElementById('contactSuccess');
+      var submitBtn = document.getElementById('contactSubmitBtn');
+
+      errEl.style.display = 'none';
+      successEl.style.display = 'none';
+
+      if (!name || !email || !message) {
+        errEl.textContent = 'Please fill in all required fields.';
+        errEl.style.display = 'block';
+        return;
+      }
+
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        errEl.textContent = 'Please enter a valid email address.';
+        errEl.style.display = 'block';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      var originalBtnText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<span>Sending...</span>';
+
+      fetch('https://formspree.io/f/xreneykp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          subject: subject,
+          message: message
+        })
+      })
+      .then(function(res) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+        if (res.ok) {
+          successEl.style.display = 'block';
+          document.getElementById('contactForm').reset();
+          if (typeof gtag === 'function') {
+            gtag('event', 'contact_form_submit', {event_category: 'engagement', event_label: subject});
+          }
+        } else {
+          return res.json().then(function(data) {
+            throw new Error(data.error || 'Failed to submit form. Please try again.');
+          });
+        }
+      })
+      .catch(function(err) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+        errEl.textContent = err.message || 'An error occurred while sending your message. Please try again.';
+        errEl.style.display = 'block';
+      });
+    });
+  </script>
+</body>
+</html>

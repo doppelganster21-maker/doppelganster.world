@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#000000" />
+
+  <title>About Us – Doppelganger.world</title>
+
+  <meta name="description"
+    content="Learn about Doppelganger.world — the platform helping you find your real-life look-alike, explore global twin stories, and join the facial matcher community.">
+  <meta name="keywords" content="about doppelganger, look-alike community, twin strangers, face similarity, global double finder">
+  <meta name="author" content="Doppelganger.world">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://www.doppelganger.world/AboutUs.html">
+
+  <!-- OPEN GRAPH / FACEBOOK -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.doppelganger.world/AboutUs.html" />
+  <meta property="og:title" content="About Us – Doppelganger.world" />
+  <meta property="og:description" content="Discover our mission to connect double strangers worldwide through AI technology and facial similarities." />
+  <meta property="og:image" content="https://www.doppelganger.world/logo-dark.png" />
+
+  <!-- TWITTER CARDS -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About Us – Doppelganger.world" />
+  <meta name="twitter:description" content="Discover our mission to connect double strangers worldwide through AI technology." />
+  <meta name="twitter:image" content="https://www.doppelganger.world/logo-dark.png" />
+
+  <!-- STRUCTURED DATA -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Doppelganger.world",
+    "url": "https://www.doppelganger.world/AboutUs.html",
+    "description": "Connecting double strangers across the world through AI face matching & community bounties."
+  }
+  </script>
+
+  <link rel="icon" id="siteFavicon" type="image/png" href="/logo-dark.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="/ad-styles.css" />
+  <link rel="stylesheet" href="/cookie-consent.css" />
+  <script src="theme.js"></script>
+  <!-- PERFORMANCE: Clerk deferred -->
+  <script>
+    window.addEventListener('load', function() {
+      var s = document.createElement('script');
+      s.async = true;
+      s.crossOrigin = 'anonymous';
+      s.setAttribute('data-clerk-publishable-key', 'pk_test_bWFnaWNhbC1lc2NhcmdvdC02LmNsZXJrLmFjY291bnRzLmRldiQ');
+      s.onload = function() { window.Clerk && window.Clerk.load(); };
+      s.src = 'https://magical-escargot-6.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js';
+      document.head.appendChild(s);
+    });
+  </script>
+</head>
+
+<body>
+  <!-- HEADER & NAVBAR -->
+  <header class="navbar">
+    <div class="nav-wrapper">
+      <a href="/" class="brand" title="Doppelganger Home">
+        <div class="logo">
+          <img src="/logo-dark.png" alt="Doppelganger Logo" class="logo-dark" />
+          <img src="/logo-light.png" alt="Doppelganger Logo" class="logo-light" />
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Doppelganger</span>
+          <p>Find Your Real-Life Double</p>
+        </div>
+      </a>
+
+      <div class="nav-controls">
+        <nav class="main-nav" aria-label="Main Navigation">
+          <a href="/" title="Home Page">Home</a>
+          <a href="/blog.html" title="Blog">Blog</a>
+          <a href="/AboutUs.html" class="active" title="About Us">About</a>
+          <a href="/faq.html" title="FAQ">FAQ</a>
+          <a href="/contact.html" title="Contact">Contact</a>
+        </nav>
+        <div id="authNavContainer" style="display: flex; align-items: center; gap: 8px; margin-right: 6px;">
+          <button id="googleSignInBtn" class="btn secondary" type="button" style="padding: 6px 14px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; border-radius: 50px;">
+            <svg width="15" height="15" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+            Google Sign In
+          </button>
+          <div id="userProfileBadge" style="display: none; align-items: center; gap: 8px;">
+            <div id="userAvatar" style="width: 30px; height: 30px; border-radius: 50%; background: var(--accent-gradient); color: #fff; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center;">G</div>
+            <span id="userDisplayName" style="font-size: 13px; font-weight: 600; color: var(--text-main); max-width: 90px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">User</span>
+            <button id="signOutBtn" type="button" title="Sign out of Google" style="background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 12px; text-decoration: underline;">Sign Out</button>
+          </div>
+        </div>
+
+        <button class="theme-toggle-btn" type="button"></button>
+
+        <button class="mobile-menu-btn" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg class="icon-hamburger" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none">
+            <line x1="9" y1="6" x2="20" y2="6" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="12" y1="18" x2="20" y2="18" />
+          </svg>
+          <svg class="icon-close" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Ambient Lighting Background -->
+  <div class="ambient-glow ambient-glow-1"></div>
+  <div class="ambient-glow ambient-glow-2"></div>
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+    <main class="card spotlight-card page-fade-in" style="max-width: 900px; margin: 0 auto 40px;">
+      <div class="section-header" style="border-bottom: 1px solid var(--border-color); padding-bottom: 16px;">
+        <h1 style="font-size: 28px; font-weight: 800; color: var(--text-main); margin-bottom: 8px;">About Us – Doppelganger</h1>
+        <p>Connecting double strangers across the world through AI & community</p>
+      </div>
+
+      <section style="margin-bottom: 24px;">
+        <p><strong>Doppelganger.world</strong> is a global platform created with one purpose — to help people discover their look-alikes from anywhere in the world. Whether you're embracing curiosity, exploring identity, or just having fun, our platform makes finding your double simple, fast, and exciting.</p>
+      </section>
+
+      <section style="margin-bottom: 24px;">
+        <h3 style="color: var(--text-main); margin-bottom: 10px;">Our Mission</h3>
+        <p style="color: var(--text-secondary);">We aim to bring people together through the fascinating concept of facial similarity. By using advanced AI tools, secure upload systems, and a global community, we make the experience of finding your “other self” enjoyable, safe, and meaningful.</p>
+      </section>
+
+      <section style="margin-bottom: 24px;">
+        <h3 style="color: var(--text-main); margin-bottom: 10px;">What We Offer</h3>
+        <ul style="padding-left: 20px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 8px;">
+          <li>An engaging way to find your real-life doppelganger.</li>
+          <li>Simple and secure image uploads powered by trusted cloud technology.</li>
+          <li>A public gallery featuring people from around the world.</li>
+          <li>Opportunities to earn rewards for helping others find look-alikes.</li>
+          <li>A growing blog with guides, stories, and research on facial similarities.</li>
+        </ul>
+      </section>
+
+      <section style="margin-bottom: 24px;">
+        <h3 style="color: var(--text-main); margin-bottom: 10px;">Our Core Values</h3>
+        <ul style="padding-left: 20px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 8px;">
+          <li><strong>Privacy First</strong> – Your data and images are always handled securely.</li>
+          <li><strong>Community</strong> – A place where people connect through curiosity.</li>
+          <li><strong>Innovation</strong> – Using modern tools to deliver accurate and fun experiences.</li>
+          <li><strong>Transparency</strong> – Clear communication about how the platform works.</li>
+        </ul>
+      </section>
+
+      <section style="margin-bottom: 12px;">
+        <h3 style="color: var(--text-main); margin-bottom: 10px;">Contact Us</h3>
+        <p style="color: var(--text-secondary);">Have questions, feedback, or collaboration ideas? We would love to hear from you.</p>
+        <p style="margin-top: 6px;">Email: <a href="mailto:contact@doppelganger.world">contact@doppelganger.world</a></p>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <img src="/logo-dark.png" alt="Doppelganger Logo" class="footer-logo logo-dark" width="36" height="36" />
+          <img src="/logo-light.png" alt="Doppelganger Logo" class="footer-logo logo-light" width="36" height="36" />
+          <span>Doppelganger.world</span>
+        </div>
+        <p class="footer-tagline">Find your real-life look-alike using AI facial matching technology. Connect with your global twin stranger.</p>
+        <p class="footer-contact">✉ <a href="mailto:contact@doppelganger.world">contact@doppelganger.world</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="/">Home</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/AboutUs.html">About Us</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/sitemap.html">Sitemap</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms &amp; Conditions</a>
+        <a href="/cookie-policy.html">Cookie Policy</a>
+        <a href="/disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; <span id="year"></span> Doppelganger.world. All rights reserved.</div>
+      <div class="footer-legal-note">Built with ❤️ by <a href="https://www.linkedin.com/in/javawithumesh" target="_blank" rel="noopener">Umesh Jonwal</a></div>
+    </div>
+  </footer>
+
+  <script src="/script.js" defer></script>
+  <script src="/chat.js" defer></script>
+  <script src="/ad-components.js" defer></script>
+  <script src="/cookie-consent.js" defer></script>
+  <script src="/breadcrumb.js" defer></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6E7PBHRN0P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6E7PBHRN0P');
+  </script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window,document,"clarity","script","YOUR_CLARITY_ID");
+  </script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+</body>
+
+</html>
+

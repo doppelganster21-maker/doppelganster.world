@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "D:/DopperFinder"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "doppelganster_fullstack"
+	}
+}

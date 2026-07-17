@@ -1,0 +1,11 @@
+# Environment Security
+.env
+.env.local
+.env.*.local
+
+# Dependencies
+node_modules/
+
+# Logs & Temp files
+*.log
+npm-debug.log*

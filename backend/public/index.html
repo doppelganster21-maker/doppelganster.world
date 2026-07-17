@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+
+  <title>Doppelganger – Find Your Real-Life Look-Alike & Claim Bounties</title>
+
+  <meta name="description"
+    content="Find your real-life look-alike! Upload your photo, set bounty rewards, explore identical face matches, read research stories, and connect with your global twin on Doppelganger.world.">
+  <meta name="keywords" content="doppelganger, look alike finder, face similarity, twin stranger, facial recognition, double finder, bounty reward">
+  <meta name="author" content="Doppelganger.world">
+  <meta name="robots" content="index, follow">
+
+  <!-- CANONICAL URL -->
+  <link rel="canonical" href="https://www.doppelganger.world/">
+
+  <!-- OPEN GRAPH / FACEBOOK -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.doppelganger.world/" />
+  <meta property="og:title" content="Doppelganger – Find Your Real-Life Look-Alike" />
+  <meta property="og:description" content="Upload your facial photo, set bounty rewards, explore face matches, and discover your real-life double today." />
+  <meta property="og:image" content="https://www.doppelganger.world/logo-dark.png" />
+  <meta property="og:site_name" content="Doppelganger.world" />
+
+  <!-- TWITTER CARDS -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://www.doppelganger.world/" />
+  <meta name="twitter:title" content="Doppelganger – Find Your Real-Life Look-Alike" />
+  <meta name="twitter:description" content="Discover your real-life double! Set bounties, browse global submissions, and join the facial matcher community." />
+  <meta name="twitter:image" content="https://www.doppelganger.world/logo-dark.png" />
+
+  <!-- STRUCTURED DATA (SCHEMA.ORG JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://www.doppelganger.world/#website",
+        "url": "https://www.doppelganger.world/",
+        "name": "Doppelganger.world",
+        "description": "Discover your global facial doppelgänger and claim facial look-alike bounties.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "Doppelganger.world"
+        }
+      },
+      {
+        "@type": "WebApplication",
+        "name": "Doppelganger Finder & Bounty Platform",
+        "url": "https://www.doppelganger.world/",
+        "applicationCategory": "EntertainmentApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="icon" id="siteFavicon" type="image/png" href="/logo-dark.png" />
+
+  <!-- PERFORMANCE: Preconnect to critical origins only -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://res.cloudinary.com" />
+
+  <!--
+    PERFORMANCE: font-display=optional → NO layout shift (CLS=0 from font).
+    Browser uses system font immediately; custom font only if already cached.
+    This is the only strategy that fully eliminates font-swap CLS.
+  -->
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=optional"
+    onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=optional" /></noscript>
+
+  <!-- Critical CSS -->
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="preload" href="/ad-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="/ad-styles.css" /></noscript>
+  <link rel="preload" href="/cookie-consent.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="/cookie-consent.css" /></noscript>
+
+  <!-- Critical CSS Theme configuration: run inline immediately to prevent FOUC -->
+  <script>
+    (function(){
+      var saved = localStorage.getItem('doppel_theme');
+      var theme = saved === 'dark' || saved === 'light' ? saved : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+  <!-- theme.js: non-blocking deferred loading of DOM handlers -->
+  <script src="/theme.js" defer></script>
+
+  <!-- Clerk: loaded on idle, never blocks render or TBT -->
+  <script>
+    (function(){
+      var loadClerk = function() {
+        var s = document.createElement('script');
+        s.async = true;
+        s.crossOrigin = 'anonymous';
+        s.setAttribute('data-clerk-publishable-key', 'pk_test_bWFnaWNhbC1lc2NhcmdvdC02LmNsZXJrLmFjY291bnRzLmRldiQ');
+        s.onload = function() { window.Clerk && window.Clerk.load(); };
+        s.src = 'https://magical-escargot-6.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js';
+        document.head.appendChild(s);
+      };
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadClerk, { timeout: 3000 });
+      } else {
+        window.addEventListener('load', loadClerk);
+      }
+    })();
+  </script>
+</head>
+
+
+<body>
+  <!-- HEADER & NAVBAR -->
+  <header class="navbar">
+    <div class="nav-wrapper">
+      <a href="/" class="brand" title="Doppelganger Home">
+        <div class="logo">
+          <img src="/logo-dark.webp" alt="Doppelganger Logo" class="logo-dark" width="34" height="34" fetchpriority="high" />
+          <img src="/logo-light.webp" alt="Doppelganger Logo" class="logo-light" width="34" height="34" />
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Doppelganger</span>
+          <p>Find Your Real-Life Double</p>
+        </div>
+      </a>
+
+      <div class="nav-controls">
+        <nav class="main-nav" aria-label="Main Navigation">
+          <a href="/" class="active" title="Home Page">Home</a>
+          <a href="/blog.html" title="Read Latest Blog Posts">Blog</a>
+          <a href="/AboutUs.html" title="About Us">About</a>
+          <a href="/faq.html" title="FAQ">FAQ</a>
+          <a href="/contact.html" title="Contact">Contact</a>
+        </nav>
+        <div id="authNavContainer" style="display: flex; align-items: center; gap: 8px; margin-right: 6px;">
+          <button id="googleSignInBtn" class="btn secondary" type="button" style="padding: 6px 14px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; border-radius: 50px;">
+            <svg width="15" height="15" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+            Google Sign In
+          </button>
+          <div id="userProfileBadge" style="display: none; align-items: center; gap: 8px;">
+            <div id="userAvatar" style="width: 30px; height: 30px; border-radius: 50%; background: var(--accent-gradient); color: #fff; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center;">G</div>
+            <span id="userDisplayName" style="font-size: 13px; font-weight: 600; color: var(--text-main); max-width: 90px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">User</span>
+            <button id="signOutBtn" type="button" title="Sign out of Google" style="background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 12px; text-decoration: underline;">Sign Out</button>
+          </div>
+        </div>
+
+        <button class="theme-toggle-btn" type="button" aria-label="Toggle dark and light mode"></button>
+
+        <button class="mobile-menu-btn" type="button" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg class="icon-hamburger" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none">
+            <line x1="9" y1="6" x2="20" y2="6" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="12" y1="18" x2="20" y2="18" />
+          </svg>
+          <svg class="icon-close" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Top Leaderboard Ad -->
+  <div class="ad-banner-wrap">
+    <div id="ad-leaderboard-top" class="ad-section ad-container ad-leaderboard"></div>
+  </div>
+
+  <!-- Ambient Lighting Background -->
+  <div class="ambient-glow ambient-glow-1"></div>
+  <div class="ambient-glow ambient-glow-2"></div>
+
+  <div class="container">
+    <!-- HERO BANNER SPLIT -->
+    <section class="hero-banner hero-grid-split">
+      <div class="hero-text-side">
+        <div class="badge-pill">
+          <span></span> AI Facial Matcher & Bounty Network
+        </div>
+        <h1 class="hero-title">
+          Discover Your Global <span class="gradient-text">Doppelgänger</span>
+        </h1>
+        <p class="hero-subtext" style="text-align: left;">
+          Upload clear facial portraits, place look-alike bounties, explore community submissions, and connect with your identical twin strangers around the globe.
+        </p>
+        <div class="hero-stats-row">
+          <div class="hero-stat-pill">
+            <span class="num">99.2%</span> Facial Accuracy
+          </div>
+          <div class="hero-stat-pill">
+            <span class="num">12,400+</span> Matches Found
+          </div>
+          <div class="hero-stat-pill">
+            <span class="num">Instant</span> AI Verification
+          </div>
+        </div>
+      </div>
+
+      <!-- Framer Twin Scanner Visualizer Widget -->
+      <div class="twin-scanner-widget spotlight-card">
+        <div class="scanner-header">
+          <div class="scanner-tag">
+            <span class="scanner-live-dot"></span> Live Match Engine
+          </div>
+          <span style="font-size: 12px; color: var(--text-muted); font-family: monospace;">ALIGNMENT: HIGH</span>
+        </div>
+
+        <div class="scanner-viewport">
+          <div class="scanner-laser-beam"></div>
+
+          <!-- Subject A -->
+          <div class="scan-subject-card">
+            <img src="/logo-dark.webp" id="scanSubject1" alt="Subject facial scan 1" width="150" height="150" style="object-fit: contain; padding: 12px;" />
+            <div class="facial-nodes-overlay">
+              <div class="node-point" style="top: 35%; left: 38%;"></div>
+              <div class="node-point" style="top: 35%; left: 62%;"></div>
+              <div class="node-point" style="top: 55%; left: 50%;"></div>
+              <div class="node-point" style="top: 72%; left: 45%;"></div>
+              <div class="node-point" style="top: 72%; left: 55%;"></div>
+            </div>
+          </div>
+
+          <!-- Subject B -->
+          <div class="scan-subject-card">
+            <img src="/logo-light.webp" id="scanSubject2" alt="Subject facial scan 2" width="150" height="150" style="object-fit: contain; padding: 12px; background: rgba(255,255,255,0.05);" />
+            <div class="facial-nodes-overlay">
+              <div class="node-point" style="top: 35%; left: 38%;"></div>
+              <div class="node-point" style="top: 35%; left: 62%;"></div>
+              <div class="node-point" style="top: 55%; left: 50%;"></div>
+              <div class="node-point" style="top: 72%; left: 45%;"></div>
+              <div class="node-point" style="top: 72%; left: 55%;"></div>
+            </div>
+          </div>
+
+          <div class="match-score-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-primary)" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span class="match-score-num" id="demoMatchScore">98.6% MATCH</span>
+          </div>
+        </div>
+
+        <div class="scan-controls-bar">
+          <span style="font-size: 12px; color: var(--text-secondary);">Facial geometry matrix verified</span>
+          <button class="btn-scan-demo" id="runDemoScanBtn" type="button">Simulate AI Scan</button>
+        </div>
+      </div>
+    </section>
+
+    <main class="main" role="main">
+
+      <!-- UPLOAD SECTION -->
+      <section class="card spotlight-card" id="uploadSection" aria-labelledby="uploadHeading" data-framer-reveal data-framer-delay="200">
+        <div class="section-header">
+          <h2 id="uploadHeading">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-primary);"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Post Your Portrait & Set Reward
+          </h2>
+          <p>Provide contact info, upload a clear front-facing portrait photo, and specify your bounty reward.</p>
+        </div>
+
+        <form id="uploadForm" enctype="multipart/form-data" autocomplete="off">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name">Your Full Name</label>
+              <input id="name" name="name" type="text" placeholder="e.g. Alex Morgan" required />
+            </div>
+            <div class="form-group">
+              <label for="currency">Currency</label>
+              <select id="currency" name="currency">
+                <option value="₹">₹ INR</option>
+                <option value="$">$ USD</option>
+                <option value="€">€ EUR</option>
+                <option value="£">£ GBP</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="reward">Bounty Reward Amount</label>
+              <input id="reward" name="reward" type="number" min="100" placeholder="e.g. 500 (Min. 100)" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Contact Email (Private & Confidential)</label>
+            <input id="email" name="email" type="email" placeholder="alex.morgan@example.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="file">Upload Facial Photo</label>
+            <div class="dropzone" id="dropzone">
+              <input id="file" name="file" type="file" accept="image/*" required />
+              <div class="dropzone-content">
+                <div class="dropzone-icon">📷</div>
+                <p>Drag & drop your face photo here, or <strong style="color: var(--accent-primary);">browse files</strong></p>
+                <span>Supports JPG, PNG, WEBP (Max file size: 10MB)</span>
+              </div>
+            </div>
+
+            <!-- Preview box -->
+            <div class="file-preview" id="filePreview">
+              <img id="previewImg" src="" alt="Selected face photo preview" width="60" height="60" />
+              <div class="file-preview-info">
+                <div class="file-preview-name" id="previewName">filename.jpg</div>
+                <div class="file-preview-size" id="previewSize">0 KB</div>
+              </div>
+              <button type="button" class="btn secondary" id="removeFileBtn" style="padding: 6px 12px; font-size: 13px;">Remove Photo</button>
+            </div>
+          </div>
+
+          <button type="submit" class="btn" style="width: 100%; margin-top: 10px;">
+            <span>Submit Photo & Publish Bounty Listing</span>
+          </button>
+
+          <div id="status" class="status-box" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <!-- In-content Ad -->
+      <div class="ad-banner-wrap" style="margin: 12px 0;">
+        <div id="ad-in-article-1" class="ad-section ad-container ad-in-article"></div>
+      </div>
+
+      <!-- BLOG FEATURED SPOTLIGHT -->
+      <section class="card spotlight-card" id="blogSection" aria-labelledby="blogHeading" data-framer-reveal data-framer-delay="250">
+        <div class="section-header">
+          <h2 id="blogHeading">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-primary);"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            Research & Doppelgänger Insights
+          </h2>
+        </div>
+        <article class="blog-spotlight">
+          <h3>Doppelganger.world – Science, Genetics & AI Facial Matching</h3>
+          <p>
+            Explore expert articles on facial similarity algorithms, real-life twin stranger stories, history of doppelgängers, and DNA research.
+          </p>
+          <div>
+            <a href="/blog.html" class="btn secondary" title="Top Blog on Doppelganger">
+              Explore Articles & Guides &rarr;
+            </a>
+          </div>
+        </article>
+      </section>
+
+      <!-- GALLERY SECTION -->
+      <section class="card spotlight-card" id="gallerySection" aria-labelledby="galleryHeading" data-framer-reveal data-framer-delay="300">
+        <div class="section-header">
+          <h2 id="galleryHeading">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--accent-primary);"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+            Active Look-Alike Bounty Gallery
+          </h2>
+          <p>Browse through active face submissions, spot real-life doubles, and claim bounty rewards.</p>
+        </div>
+
+        <div class="gallery-filters-container">
+          <div class="search-container" style="flex: 1; min-width: 250px; margin-bottom: 0;">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input id="searchInput" class="search-bar" type="text" placeholder="Search entries by name or keyword..." style="margin-bottom: 0;" aria-label="Search entries by name or keyword" />
+          </div>
+          <div class="gallery-tabs" id="galleryTabs" style="display: none;">
+            <button id="tabAllBounties" class="gallery-tab-btn active" type="button">All Bounties</button>
+            <button id="tabMyBounties" class="gallery-tab-btn" type="button">My Bounties</button>
+          </div>
+        </div>
+
+        <div id="galleryGrid" class="gallery" role="list"></div>
+        <div id="emptyMsg" class="empty-state">No look-alike photos found matching your criteria.</div>
+
+        <div class="pagination">
+          <button id="prevPageBtn" class="btn secondary">&larr; Previous</button>
+          <button id="nextPageBtn" class="btn secondary">Next &rarr;</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Framer Lightbox Modal for Detailed Portrait View -->
+  <div class="framer-lightbox" id="imageLightbox">
+    <div class="lightbox-card spotlight-card">
+      <button class="lightbox-close-btn" id="lightboxCloseBtn" type="button" aria-label="Close Preview">&times;</button>
+      <img src="" id="lightboxImg" class="lightbox-img" alt="Look-alike portrait details" width="600" height="420" />
+      <div class="lightbox-body">
+        <h3 id="lightboxName" style="font-size: 20px; font-weight: 800; margin-bottom: 6px; color: var(--text-main);">Name</h3>
+        <p id="lightboxBounty" style="font-size: 15px; color: var(--accent-primary); font-weight: 700; margin-bottom: 12px;">Bounty Reward: $0</p>
+        <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">Notice a double stranger resemblance? Share this profile or run our 100% free AI face matcher to discover look-alikes.</p>
+        
+        <button id="findMatchBtn" class="btn primary" type="button" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Find AI Doppelgänger Match (100% Free)
+        </button>
+
+        <div id="matchResultContainer" style="display: none; margin-top: 14px; background: var(--bg-input); padding: 14px; border-radius: 14px; border: 1px solid var(--border-glow); text-align: center;">
+          <div id="matchScoreBadge" style="font-weight: 800; color: var(--accent-primary); font-size: 16px; margin-bottom: 4px;"></div>
+          <div id="matchDetails" style="font-size: 13px; color: var(--text-secondary);"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <img src="/logo-dark.webp" alt="Doppelganger Logo" class="footer-logo logo-dark" width="36" height="36" />
+          <img src="/logo-light.webp" alt="Doppelganger Logo" class="footer-logo logo-light" width="36" height="36" />
+          <span>Doppelganger.world</span>
+        </div>
+        <p class="footer-tagline">Find your real-life look-alike using AI facial matching technology. Connect with your global twin stranger.</p>
+        <p class="footer-contact">✉ <a href="mailto:contact@doppelganger.world">contact@doppelganger.world</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <a href="/">Home</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/AboutUs.html">About Us</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/sitemap.html">Sitemap</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms &amp; Conditions</a>
+        <a href="/cookie-policy.html">Cookie Policy</a>
+        <a href="/disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">&copy; <span id="year"></span> Doppelganger.world. All rights reserved.</div>
+      <div class="footer-legal-note">Built with ❤️ by <a href="https://www.linkedin.com/in/javawithumesh" target="_blank" rel="noopener">Umesh Jonwal</a></div>
+    </div>
+  </footer>
+
+  <!-- App scripts: defer keeps them off critical path -->
+  <script src="/script.js" defer></script>
+  <script src="/chat.js" defer></script>
+  <script src="/ad-components.js" defer></script>
+  <script src="/cookie-consent.js" defer></script>
+  <script src="/breadcrumb.js" defer></script>
+
+  <!-- Analytics: loaded on idle, never contributes to TBT -->
+  <script>
+    (function(){
+      var loadAnalytics = function() {
+        // GA4
+        var g = document.createElement('script');
+        g.async = true;
+        g.src = 'https://www.googletagmanager.com/gtag/js?id=G-6E7PBHRN0P';
+        document.head.appendChild(g);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        window.gtag = gtag;
+        gtag('js', new Date());
+        gtag('config', 'G-6E7PBHRN0P', { send_page_view: true });
+        // Microsoft Clarity (only load if a valid key is provided)
+        (function(c,l,a,r,i,t,y){
+          if (i === 'YOUR_CLARITY_ID') return;
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window,document,'clarity','script','YOUR_CLARITY_ID');
+      };
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadAnalytics, { timeout: 4000 });
+      } else {
+        window.addEventListener('load', loadAnalytics);
+      }
+    })();
+  </script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
