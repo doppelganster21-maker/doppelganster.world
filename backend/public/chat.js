@@ -57,8 +57,8 @@
         <div id="aiChatFeed" class="ai-chat-feed">
           <div class="ai-msg assistant">
             <div class="ai-avatar">
-              <img src="logo-dark.png" alt="AI Avatar" class="logo-dark" width="26" height="26" />
-              <img src="logo-light.png" alt="AI Avatar" class="logo-light" width="26" height="26" />
+              <img src="logo-dark.webp" alt="AI Avatar" class="logo-dark" width="26" height="26" />
+              <img src="logo-light.webp" alt="AI Avatar" class="logo-light" width="26" height="26" />
             </div>
             <div class="ai-msg-body">
               👋 Welcome! I am your <strong>Doppelganger AI Assistant</strong>.<br/><br/>
