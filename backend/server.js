@@ -585,11 +585,13 @@ const generateBlogHtml = (blog) => {
   <!-- PERFORMANCE: Clerk deferred after page load -->
   <script>
     window.addEventListener('load', function() {
+      var key = "${process.env.CLERK_PUBLISHABLE_KEY || ''}";
+      if (!key) return;
       var s = document.createElement('script');
       s.async = true; s.crossOrigin = 'anonymous';
-      s.setAttribute('data-clerk-publishable-key', 'pk_test_bWFnaWNhbC1lc2NhcmdvdC02LmNsZXJrLmFjY291bnRzLmRldiQ');
+      s.setAttribute('data-clerk-publishable-key', key);
       s.onload = function() { window.Clerk && window.Clerk.load(); };
-      s.src = 'https://magical-escargot-6.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js';
+      s.src = 'https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js';
       document.head.appendChild(s);
     });
   </script>
@@ -1102,7 +1104,7 @@ app.use((req, res, next) => {
   res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
 
   // Modern Security Headers for Lighthouse Best Practices
-  res.setHeader("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://magical-escargot-6.clerk.accounts.dev https://www.googletagmanager.com https://www.clarity.ms https://*.google-analytics.com blob: https://pagead2.googlesyndication.com https://*.googlesyndication.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://*.google.com https://tpc.googlesyndication.com; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://res.cloudinary.com https://images.clerk-cdn.com https://img.clerk.com https://images.clerk.dev https://*.clerk.com https://*.clerk.dev https://www.clarity.ms https://*.google-analytics.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://www.googletagmanager.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://api.groq.com https://api.groq.com/openai/v1/chat/completions https://magical-escargot-6.clerk.accounts.dev https://clerk.accounts.dev https://api.clerk.accounts.dev https://r.clarity.ms https://*.google-analytics.com https://*.analytics.google.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google https://ep1.adtrafficquality.google; frame-src 'self' https://magical-escargot-6.clerk.accounts.dev https://googleads.g.doubleclick.net https://*.doubleclick.net https://*.google.com https://*.googlesyndication.com;");
+  res.setHeader("Content-Security-Policy", "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.clarity.ms https://*.google-analytics.com blob: https://pagead2.googlesyndication.com https://*.googlesyndication.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://*.google.com https://tpc.googlesyndication.com https://*.adtrafficquality.google https://ep2.adtrafficquality.google https://cdn.jsdelivr.net https://*.clerk.accounts.dev https://*.clerk.com https://*.clerk.dev; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://res.cloudinary.com https://images.clerk-cdn.com https://img.clerk.com https://images.clerk.dev https://*.clerk.com https://*.clerk.dev https://www.clarity.ms https://*.google-analytics.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://www.googletagmanager.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://api.groq.com https://api.groq.com/openai/v1/chat/completions https://clerk.accounts.dev https://api.clerk.accounts.dev https://*.clerk.accounts.dev https://*.clerk.com https://*.clerk.dev https://r.clarity.ms https://*.google-analytics.com https://*.analytics.google.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://*.google.com https://*.adtrafficquality.google https://ep1.adtrafficquality.google; frame-src 'self' https://*.clerk.accounts.dev https://*.clerk.com https://*.clerk.dev https://googleads.g.doubleclick.net https://*.doubleclick.net https://*.google.com https://*.googlesyndication.com;");
   res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
   res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
 
