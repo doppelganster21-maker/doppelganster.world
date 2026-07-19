@@ -17,7 +17,7 @@
   'use strict';
 
   // Replace with your AdSense publisher ID when approved
-  var PUBLISHER_ID = 'YOUR_ADSENSE_PUBLISHER_ID';
+  var PUBLISHER_ID = 'ca-pub-7208166578795598';
 
   // Detect if real AdSense script is loaded
   function isAdSenseLoaded() {

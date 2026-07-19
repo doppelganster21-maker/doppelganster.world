@@ -577,6 +577,9 @@ const generateBlogHtml = (blog) => {
   <link rel="stylesheet" href="/styles.css" />
   <link rel="stylesheet" href="/ad-styles.css" />
   <link rel="stylesheet" href="/cookie-consent.css" />
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7208166578795598"
+     crossorigin="anonymous"></script>
   <script src="/theme.js"></script>
 
   <!-- PERFORMANCE: Clerk deferred after page load -->
