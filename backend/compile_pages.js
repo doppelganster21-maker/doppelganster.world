@@ -199,7 +199,7 @@ const compile = () => {
   <!-- PERFORMANCE: Clerk deferred after page load -->
   <script>
     window.addEventListener('load', function() {
-      var key = "${process.env.CLERK_PUBLISHABLE_KEY || ''}";
+      var key = "${process.env.CLERK_PUBLISHABLE_KEY || 'pk_live_Y2xlcmsuZG9wcGVsZ2FuZ2VyLndvcmxkJA'}";
       if (!key) return;
       var s = document.createElement('script');
       s.async = true; s.crossOrigin = 'anonymous';
