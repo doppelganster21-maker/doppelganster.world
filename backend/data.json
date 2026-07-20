@@ -1,2 +1,155 @@
 [
+  {
+    "id": "ai_real_08",
+    "name": "Camille Laurent",
+    "email": "camille.laurent95@gmail.com",
+    "reward": 220,
+    "currency": "€",
+    "location": "Paris, France",
+    "url": "/images/photo_camille_laurent.jpg"
+  },
+  {
+    "id": "ai_gen_real_new_10",
+    "name": "Lucas Fernandez",
+    "email": "lucas.fernandez92@gmail.com",
+    "reward": 220,
+    "currency": "€",
+    "location": "Valencia, Spain",
+    "url": "/images/photo_lucas_fernandez.jpg"
+  },
+  {
+    "id": "ai_real_03",
+    "name": "Yuki Tanaka",
+    "email": "yuki.tanaka89@gmail.com",
+    "reward": 4000,
+    "currency": "¥",
+    "location": "Tokyo, Japan",
+    "url": "/images/photo_yuki_tanaka.jpg"
+  },
+  {
+    "id": "ai_gen_08",
+    "name": "Sarah Jenkins",
+    "email": "sarah.jenkins92@gmail.com",
+    "reward": 200,
+    "currency": "£",
+    "location": "Manchester, UK",
+    "url": "/images/photo_sarah_jenkins.jpg"
+  },
+  {
+    "id": "ai_gen_real_new_01",
+    "name": "Arjun Mehta",
+    "email": "arjun.mehta94@gmail.com",
+    "reward": 500,
+    "currency": "₹",
+    "location": "New Delhi, India",
+    "url": "/images/photo_arjun_mehta.jpg"
+  },
+  {
+    "id": "ai_real_06",
+    "name": "Isabela Rocha",
+    "email": "isabela.rocha88@gmail.com",
+    "reward": 250,
+    "currency": "R$",
+    "location": "Rio de Janeiro, Brazil",
+    "url": "/images/photo_isabela_rocha.jpg"
+  },
+  {
+    "id": "ai_gen_10",
+    "name": "Thomas Dupont",
+    "email": "thomas.dupont87@gmail.com",
+    "reward": 250,
+    "currency": "€",
+    "location": "Lyon, France",
+    "url": "/images/photo_thomas_dupont.jpg"
+  },
+  {
+    "id": "ai_gen_13",
+    "name": "Lisa Anderson",
+    "email": "lisa.anderson93@gmail.com",
+    "reward": 220,
+    "currency": "€",
+    "location": "Gothenburg, Sweden",
+    "url": "/images/photo_lisa_anderson.jpg"
+  },
+  {
+    "id": "ai_real_07",
+    "name": "Hamdan Al-Farsi",
+    "email": "hamdan.alfarsi93@gmail.com",
+    "reward": 400,
+    "currency": "AED",
+    "location": "Dubai, UAE",
+    "url": "/images/portrait_hamdan_farsi.jpg"
+  },
+  {
+    "id": "ai_gen_02",
+    "name": "Jan Kowalski",
+    "email": "jan.kowalski89@gmail.com",
+    "reward": 200,
+    "currency": "€",
+    "location": "Warsaw, Poland",
+    "url": "/images/photo_jan_kowalski.jpg"
+  },
+  {
+    "id": "ai_real_04",
+    "name": "Kwame Mensah",
+    "email": "kwame.mensah91@gmail.com",
+    "reward": 200,
+    "currency": "$",
+    "location": "Accra, Ghana",
+    "url": "/images/portrait_kwame_mensah.jpg"
+  },
+  {
+    "id": "ai_gen_09",
+    "name": "Ananya Gupta",
+    "email": "ananya.gupta91@gmail.com",
+    "reward": 1500,
+    "currency": "₹",
+    "location": "Mumbai, India",
+    "url": "/images/portrait_ananya_gupta.jpg"
+  },
+  {
+    "id": "ai_gen_15",
+    "name": "Natalia Ivanova",
+    "email": "natalia.ivanova96@gmail.com",
+    "reward": 250,
+    "currency": "$",
+    "location": "Saint Petersburg, Russia",
+    "url": "/images/portrait_natalia_ivanova.jpg"
+  },
+  {
+    "id": "ai_gen_real_new_02",
+    "name": "Elena Popescu",
+    "email": "elena.popescu84@gmail.com",
+    "reward": 200,
+    "currency": "€",
+    "location": "Bucharest, Romania",
+    "url": "/images/photo_elena_popescu.jpg"
+  },
+  {
+    "id": "ai_gen_11",
+    "name": "Kenzo Tanaka",
+    "email": "kenzo.tanaka94@gmail.com",
+    "reward": 6000,
+    "currency": "¥",
+    "location": "Osaka, Japan",
+    "url": "/images/portrait_kenzo_tanaka.jpg"
+  },
+  {
+    "id": "ai_gen_05",
+    "name": "Hannah Schmidt",
+    "email": "hannah.schmidt91@gmail.com",
+    "reward": 250,
+    "currency": "€",
+    "location": "Vienna, Austria",
+    "url": "/images/portrait_hannah_schmidt.jpg"
+  },
+  {
+    "id": "ai_real_09",
+    "name": "Harry Watson",
+    "email": "harry.watson90@gmail.com",
+    "reward": 150,
+    "currency": "£",
+    "location": "London, UK",
+    "url": "/images/portrait_harry_watson.jpg"
+  }
 ]

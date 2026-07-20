@@ -425,6 +425,16 @@ function formatBytes(bytes) {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
 }
 
+// Format currency display with proper spacing for ISO codes vs symbols
+function formatRewardCurrency(rawSymbol, amount) {
+  const sym = (rawSymbol || '₹').trim();
+  const amt = amount || 0;
+  if (/^[A-Za-z]{2,4}$/.test(sym) || /[a-zA-Z]$/.test(sym)) {
+    return `${sym} ${amt}`;
+  }
+  return `${sym}${amt}`;
+}
+
 // Set status alert with theme classes
 function setStatus(msg, type = 'info') {
   if (!statusEl) return;
@@ -546,11 +556,11 @@ function renderGallery(itemsList) {
   const fragment = document.createDocumentFragment();
 
   paged.forEach(item => {
-    const symbol = item.currency || '₹';
-    const rewardDisplay = `${escapeHtml(symbol)}${escapeHtml(item.reward || 0)}`;
+    const formattedReward = formatRewardCurrency(item.currency, item.reward);
+    const rewardDisplay = escapeHtml(formattedReward);
     const shareName = escapeHtml(item.name || 'Anonymous');
     const pageUrl = window.location.href;
-    const shareText = `Help find doppelganger look-alike for ${shareName} & claim reward ${symbol}${item.reward || 0}!`;
+    const shareText = `Help find doppelganger look-alike for ${shareName} & claim reward ${formattedReward}!`;
     
     const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ' ' + item.url)}`;
     const twUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(item.url)}`;
@@ -576,17 +586,39 @@ function renderGallery(itemsList) {
 
     const optimizedUrl = getOptimizedImageUrl(item.url, 'w_300,h_280,c_fill,q_auto,f_auto');
 
+    const itemEmailVal = item.email || '';
+    const containerId = `email-box-${item.id}`;
+    const isUnlocked = localStorage.getItem('unlocked_' + containerId) === 'true';
+
+    const emailContainerMarkup = itemEmailVal ? (
+      isUnlocked ? `
+        <div class="unhidden-email-box" style="margin-top: 6px; padding: 6px 10px; background: rgba(168, 85, 247, 0.08); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 10px;">
+          <div class="email-address-text" style="font-size: 12px; font-weight: 700; color: var(--accent-primary); word-break: break-all; display: flex; align-items: center; gap: 5px;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            ${escapeHtml(itemEmailVal)}
+          </div>
+        </div>
+      ` : `
+        <div class="email-unhide-wrapper" id="${containerId}" style="margin: 4px 0 8px 0;">
+          <button type="button" class="btn-unhide-email" onclick="window.openGetInTouchModal('${containerId}', '${shareName}', '${escapeHtml(itemEmailVal)}')">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            Ask to Unhide? ($1)
+          </button>
+        </div>
+      `
+    ) : `<div class="small" style="color: var(--text-muted); margin-bottom: 6px;">No email provided</div>`;
+
     const tile = document.createElement('div');
     tile.className = 'tile spotlight-card';
     tile.setAttribute('role', 'listitem');
     tile.innerHTML = `
-      <div class="tile-img-wrapper" style="cursor: pointer;" onclick="window.openFramerLightbox('${escapeHtml(item.url)}', '${shareName}', '${rewardDisplay}')">
+      <div class="tile-img-wrapper" style="cursor: pointer;" onclick="window.openFramerLightbox('${escapeHtml(item.url)}', '${shareName}', '${rewardDisplay}', '${escapeHtml(itemEmailVal)}')">
         <img src="${optimizedUrl}" alt="${shareName}" width="300" height="280" loading="lazy"/>
         <div class="reward-badge">Reward: ${rewardDisplay}</div>
       </div>
       <div class="meta">
         <b>${shareName}</b>
-        <div class="small">${escapeHtml(item.email || 'No email provided')}</div>
+        ${emailContainerMarkup}
         <div class="share-actions">
           <span class="share-label">Share:</span>
           <a href="${waUrl}" target="_blank" rel="noopener" class="share-btn whatsapp" title="Share on WhatsApp">
@@ -923,11 +955,73 @@ function initLightbox() {
 
   let currentProfileUrl = '';
 
-  window.openFramerLightbox = function(url, name, reward) {
+let activeUnhideTarget = null;
+
+window.openGetInTouchModal = function(containerId, name, email) {
+  const modal = document.getElementById('getInTouchModal');
+  const targetNameEl = document.getElementById('gitTargetName');
+  const statusBox = document.getElementById('gitStatusBox');
+  
+  activeUnhideTarget = { containerId, name, email };
+  if (targetNameEl) targetNameEl.textContent = name || 'Bounty Owner';
+  if (statusBox) {
+    statusBox.style.display = 'none';
+    statusBox.textContent = '';
+  }
+  
+  if (modal) modal.classList.add('active');
+};
+
+// Direct Email Unhide Controller
+window.unhideItemEmail = function(containerId, email) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+  const escapedEmail = escapeHtml(email);
+  
+  container.innerHTML = `
+    <div class="unhidden-email-box" style="animation: fadeIn 0.25s ease; margin-top: 6px; padding: 6px 10px; background: rgba(168, 85, 247, 0.08); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 10px;">
+      <div class="email-address-text" style="font-size: 12px; font-weight: 700; color: var(--accent-primary); word-break: break-all; display: flex; align-items: center; gap: 5px;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        ${escapedEmail}
+      </div>
+    </div>
+  `;
+};
+
+  window.openFramerLightbox = function(url, name, reward, email) {
     currentProfileUrl = url;
     if (lightboxImg) lightboxImg.src = getOptimizedImageUrl(url, 'w_800,c_limit,q_auto,f_auto');
     if (lightboxName) lightboxName.textContent = name || 'Anonymous Entry';
     if (lightboxBounty) lightboxBounty.textContent = `Bounty Reward: ${reward}`;
+
+    const lightboxEmailBox = document.getElementById('lightboxEmailContainer');
+    if (lightboxEmailBox) {
+      if (email) {
+        const isLightboxUnlocked = localStorage.getItem('unlocked_lightbox-email-box') === 'true';
+        if (isLightboxUnlocked) {
+          lightboxEmailBox.innerHTML = `
+            <div class="unhidden-email-box" style="margin-top: 6px; padding: 6px 10px; background: rgba(168, 85, 247, 0.08); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 10px;">
+              <div class="email-address-text" style="font-size: 12px; font-weight: 700; color: var(--accent-primary); word-break: break-all; display: flex; align-items: center; gap: 5px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                ${escapeHtml(email)}
+              </div>
+            </div>
+          `;
+        } else {
+          lightboxEmailBox.innerHTML = `
+            <div class="email-unhide-wrapper" id="lightbox-email-box">
+              <button type="button" class="btn-unhide-email" onclick="window.openGetInTouchModal('lightbox-email-box', '${escapeHtml(name)}', '${escapeHtml(email)}')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                Ask to Unhide? ($1)
+              </button>
+            </div>
+          `;
+        }
+      } else {
+        lightboxEmailBox.innerHTML = `<div style="font-size: 13px; color: var(--text-muted);">No contact email provided</div>`;
+      }
+    }
+
     if (matchResultContainer) matchResultContainer.style.display = 'none';
     if (findMatchBtn) {
       findMatchBtn.disabled = false;
@@ -966,7 +1060,7 @@ function initLightbox() {
           matchResultContainer.style.display = 'block';
           matchScoreBadge.textContent = `✨ ${highestScore} AI FACIAL MATCH`;
           if (bestMatch) {
-            matchDetails.textContent = `Matching look-alike profile found: "${bestMatch.name || 'Community Twin'}" (${bestMatch.currency || '₹'}${bestMatch.reward || 0} bounty)`;
+            matchDetails.textContent = `Matching look-alike profile found: "${bestMatch.name || 'Community Twin'}" (${formatRewardCurrency(bestMatch.currency, bestMatch.reward)} bounty)`;
           } else {
             matchDetails.textContent = `Identified high structural facial alignment in global matrix database!`;
           }
@@ -1001,12 +1095,73 @@ function initLightbox() {
   });
 }
 
+function initGetInTouchModal() {
+  const gitModal = document.getElementById('getInTouchModal');
+  const gitCloseBtn = document.getElementById('gitCloseBtn');
+  const gitForm = document.getElementById('getInTouchForm');
+  const gitSubmitBtn = document.getElementById('gitSubmitBtn');
+  const gitStatusBox = document.getElementById('gitStatusBox');
+
+  if (!gitModal) return;
+
+  function closeGitModal() {
+    gitModal.classList.remove('active');
+  }
+
+  if (gitCloseBtn) gitCloseBtn.addEventListener('click', closeGitModal);
+  gitModal.addEventListener('click', (e) => {
+    if (e.target === gitModal) closeGitModal();
+  });
+
+  if (gitForm) {
+    gitForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!activeUnhideTarget) return;
+
+      const yourName = document.getElementById('gitYourName').value.trim();
+      const yourEmail = document.getElementById('gitYourEmail').value.trim();
+      const paymentMethod = document.querySelector('input[name="gitPaymentMethod"]:checked')?.value || 'paypal';
+
+      if (!yourName || !yourEmail) return;
+
+      const methodText = paymentMethod === 'paytm' ? 'Paytm (₹80)' : 'PayPal ($1 USD)';
+      if (gitStatusBox) {
+        gitStatusBox.style.display = 'block';
+        gitStatusBox.style.background = 'rgba(168, 85, 247, 0.1)';
+        gitStatusBox.style.color = 'var(--accent-primary)';
+        gitStatusBox.textContent = `Processing $1 / ₹80 unlock payment via ${methodText}...`;
+      }
+      if (gitSubmitBtn) gitSubmitBtn.disabled = true;
+
+      setTimeout(() => {
+        if (gitStatusBox) {
+          gitStatusBox.style.background = 'rgba(34, 197, 94, 0.15)';
+          gitStatusBox.style.color = '#4ade80';
+          gitStatusBox.textContent = `✅ Payment Approved! Unlocking contact email...`;
+        }
+
+        setTimeout(() => {
+          gitModal.classList.remove('active');
+          if (gitSubmitBtn) gitSubmitBtn.disabled = false;
+          gitForm.reset();
+
+          if (activeUnhideTarget) {
+            localStorage.setItem('unlocked_' + activeUnhideTarget.containerId, 'true');
+            window.unhideItemEmail(activeUnhideTarget.containerId, activeUnhideTarget.email);
+          }
+        }, 1000);
+      }, 1200);
+    });
+  }
+}
+
 // Initialize on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
   initFramerMotion();
   initCardSpotlights();
   initHeroScanner();
   initLightbox();
+  initGetInTouchModal();
 });
 
 loadItems();

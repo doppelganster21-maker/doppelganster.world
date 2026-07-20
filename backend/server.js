@@ -56,13 +56,51 @@ const upload = multer({
 
 // GET all images
 app.get("/api/images", async (req, res) => {
-  const { data, error } = await supabase
-    .from("images")
-    .select("*")
-    .order("created_at", { ascending: false });
+  let localImages = [];
+  try {
+    const dataPath = path.join(__dirname, "data.json");
+    if (fs.existsSync(dataPath)) {
+      const raw = fs.readFileSync(dataPath, "utf8");
+      localImages = JSON.parse(raw);
+    }
+  } catch (e) {
+    console.error("Error reading local data.json:", e);
+  }
 
-  if (error) return res.status(500).json({ error: error.message });
-  return res.json(data);
+  let supabaseImages = [];
+  try {
+    const { data, error } = await supabase
+      .from("images")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (!error && data) {
+      supabaseImages = data;
+    }
+  } catch (err) {
+    console.error("Error fetching Supabase images:", err);
+  }
+  const seenUrls = new Set();
+  const seenEmails = new Set();
+  const uniqueCombined = [];
+
+  for (const item of [...localImages, ...supabaseImages]) {
+    const normalizedUrl = (item.url || '').trim().toLowerCase();
+    const normalizedEmail = (item.email || '').trim().toLowerCase();
+
+    if (normalizedUrl && seenUrls.has(normalizedUrl)) {
+      continue; // Skip duplicate image URL
+    }
+    if (normalizedEmail && seenEmails.has(normalizedEmail)) {
+      continue; // Skip duplicate email address
+    }
+
+    if (normalizedUrl) seenUrls.add(normalizedUrl);
+    if (normalizedEmail) seenEmails.add(normalizedEmail);
+    uniqueCombined.push(item);
+  }
+
+  return res.json(uniqueCombined);
 });
 
 // POST upload

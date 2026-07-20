@@ -282,11 +282,77 @@
             </div>
             <div class="form-group">
               <label for="currency">Currency</label>
-              <select id="currency" name="currency">
-                <option value="₹">₹ INR</option>
-                <option value="$">$ USD</option>
-                <option value="€">€ EUR</option>
-                <option value="£">£ GBP</option>
+              <select id="currency" name="currency" aria-label="Select Currency">
+                <optgroup label="Popular Currencies">
+                  <option value="₹">₹ INR (Indian Rupee)</option>
+                  <option value="$">$ USD (US Dollar)</option>
+                  <option value="€">€ EUR (Euro)</option>
+                  <option value="£">£ GBP (British Pound)</option>
+                  <option value="A$">A$ AUD (Australian Dollar)</option>
+                  <option value="C$">C$ CAD (Canadian Dollar)</option>
+                  <option value="¥">¥ JPY (Japanese Yen)</option>
+                  <option value="CN¥">¥ CNY (Chinese Yuan)</option>
+                  <option value="CHF">Fr CHF (Swiss Franc)</option>
+                  <option value="S$">S$ SGD (Singapore Dollar)</option>
+                  <option value="HK$">HK$ HKD (Hong Kong Dollar)</option>
+                  <option value="NZ$">NZ$ NZD (New Zealand Dollar)</option>
+                </optgroup>
+                <optgroup label="North & South America">
+                  <option value="ARS">ARS (Argentine Peso)</option>
+                  <option value="BRL">R$ BRL (Brazilian Real)</option>
+                  <option value="CLP">CLP (Chilean Peso)</option>
+                  <option value="COP">COP (Colombian Peso)</option>
+                  <option value="MXN">MXN (Mexican Peso)</option>
+                  <option value="PEN">S/. PEN (Peruvian Sol)</option>
+                  <option value="UYU">$U UYU (Uruguayan Peso)</option>
+                </optgroup>
+                <optgroup label="Europe">
+                  <option value="BGN">лв BGN (Bulgarian Lev)</option>
+                  <option value="CZK">Kč CZK (Czech Koruna)</option>
+                  <option value="DKK">kr DKK (Danish Krone)</option>
+                  <option value="HUF">Ft HUF (Hungarian Forint)</option>
+                  <option value="ISK">kr ISK (Icelandic Króna)</option>
+                  <option value="NOK">kr NOK (Norwegian Krone)</option>
+                  <option value="PLN">zł PLN (Polish Zloty)</option>
+                  <option value="RON">lei RON (Romanian Leu)</option>
+                  <option value="SEK">kr SEK (Swedish Krona)</option>
+                  <option value="UAH">₴ UAH (Ukrainian Hryvnia)</option>
+                </optgroup>
+                <optgroup label="Asia & Pacific">
+                  <option value="AFN">؋ AFN (Afghan Afghani)</option>
+                  <option value="BDT">৳ BDT (Bangladeshi Taka)</option>
+                  <option value="KHR">៛ KHR (Cambodian Riel)</option>
+                  <option value="IDR">Rp IDR (Indonesian Rupiah)</option>
+                  <option value="ILS">₪ ILS (Israeli New Shekel)</option>
+                  <option value="KRW">₩ KRW (South Korean Won)</option>
+                  <option value="LAK">₭ LAK (Lao Kip)</option>
+                  <option value="MYR">RM MYR (Malaysian Ringgit)</option>
+                  <option value="MVR">Rf MVR (Maldivian Rufiyaa)</option>
+                  <option value="NPR">NPR (Nepalese Rupee)</option>
+                  <option value="PKR">Rs PKR (Pakistani Rupee)</option>
+                  <option value="PHP">₱ PHP (Philippine Peso)</option>
+                  <option value="LKR">Rs LKR (Sri Lankan Rupee)</option>
+                  <option value="THB">฿ THB (Thai Baht)</option>
+                  <option value="VND">₫ VND (Vietnamese Dong)</option>
+                </optgroup>
+                <optgroup label="Middle East & Africa">
+                  <option value="AED">AED (UAE Dirham)</option>
+                  <option value="BHD">BHD (Bahraini Dinar)</option>
+                  <option value="EGP">EGP (Egyptian Pound)</option>
+                  <option value="GHS">GH₵ GHS (Ghanaian Cedi)</option>
+                  <option value="JOD">JOD (Jordanian Dinar)</option>
+                  <option value="KES">KSh KES (Kenyan Shilling)</option>
+                  <option value="KWD">KWD (Kuwaiti Dinar)</option>
+                  <option value="MAD">MAD (Moroccan Dirham)</option>
+                  <option value="MUR">Rs MUR (Mauritian Rupee)</option>
+                  <option value="NGN">₦ NGN (Nigerian Naira)</option>
+                  <option value="OMR">OMR (Omani Rial)</option>
+                  <option value="QAR">QAR (Qatari Riyal)</option>
+                  <option value="SAR">SAR (Saudi Riyal)</option>
+                  <option value="ZAR">R ZAR (South African Rand)</option>
+                  <option value="TZS">TSh TZS (Tanzanian Shilling)</option>
+                  <option value="UGX">USh UGX (Ugandan Shilling)</option>
+                </optgroup>
               </select>
             </div>
             <div class="form-group">
@@ -395,7 +461,8 @@
       <img src="" id="lightboxImg" class="lightbox-img" alt="Look-alike portrait details" width="600" height="420" />
       <div class="lightbox-body">
         <h3 id="lightboxName" style="font-size: 20px; font-weight: 800; margin-bottom: 6px; color: var(--text-main);">Name</h3>
-        <p id="lightboxBounty" style="font-size: 15px; color: var(--accent-primary); font-weight: 700; margin-bottom: 12px;">Bounty Reward: $0</p>
+        <p id="lightboxBounty" style="font-size: 15px; color: var(--accent-primary); font-weight: 700; margin-bottom: 8px;">Bounty Reward: $0</p>
+        <div id="lightboxEmailContainer" style="margin-bottom: 12px;"></div>
         <p style="font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 16px;">Notice a double stranger resemblance? Share this profile or run our 100% free AI face matcher to discover look-alikes.</p>
         
         <button id="findMatchBtn" class="btn primary" type="button" style="width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;">
@@ -408,6 +475,65 @@
           <div id="matchDetails" style="font-size: 13px; color: var(--text-secondary);"></div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Get in Touch & Ask to Unhide Form Modal -->
+  <div class="framer-lightbox" id="getInTouchModal">
+    <div class="lightbox-card spotlight-card" style="max-width: 460px; padding: 24px; text-align: left;">
+      <button class="lightbox-close-btn" id="gitCloseBtn" type="button" aria-label="Close Get in Touch Form">&times;</button>
+      
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+        <div style="width: 42px; height: 42px; border-radius: 50%; background: var(--badge-bg); color: var(--accent-primary); display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-glow); flex-shrink: 0;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <h3 style="font-size: 18px; font-weight: 800; color: var(--text-main); margin-bottom: 2px;">Ask to Unhide Email?</h3>
+          <p style="font-size: 12px; color: var(--text-muted);">Get in touch with <strong id="gitTargetName" style="color: var(--accent-primary);">User</strong> ($1 / ₹80 fee)</p>
+        </div>
+      </div>
+
+      <form id="getInTouchForm" style="display: flex; flex-direction: column; gap: 12px;">
+        <div>
+          <label style="display: block; font-size: 12px; font-weight: 700; color: var(--text-secondary); margin-bottom: 4px;">Your Full Name</label>
+          <input type="text" id="gitYourName" required placeholder="Enter your full name" style="width: 100%; padding: 10px 12px; background: var(--bg-input); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-main); font-size: 13px;" />
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 12px; font-weight: 700; color: var(--text-secondary); margin-bottom: 4px;">Your Email Address</label>
+          <input type="email" id="gitYourEmail" required placeholder="you@example.com" style="width: 100%; padding: 10px 12px; background: var(--bg-input); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-main); font-size: 13px;" />
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 12px; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px;">Select Payment Method ($1 / ₹80 Fee)</label>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <label class="payment-radio-label" style="display: flex; align-items: center; gap: 8px; padding: 10px; background: var(--bg-input); border: 1px solid var(--border-color); border-radius: 10px; cursor: pointer; font-size: 12px; font-weight: 700;">
+              <input type="radio" name="gitPaymentMethod" value="paypal" checked />
+              <span style="display: flex; align-items: center; gap: 4px; color: #0070ba;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944 3.72a.77.77 0 0 1 .761-.645h6.633c3.082 0 5.485.679 6.446 2.016.907 1.26.79 3.018-.328 4.792-1.296 2.056-3.567 3.3-6.406 3.3H9.406l-1.07 6.474a.64.64 0 0 1-.63.535z"/></svg>
+                PayPal ($1)
+              </span>
+            </label>
+            <label class="payment-radio-label" style="display: flex; align-items: center; gap: 8px; padding: 10px; background: var(--bg-input); border: 1px solid var(--border-color); border-radius: 10px; cursor: pointer; font-size: 12px; font-weight: 700;">
+              <input type="radio" name="gitPaymentMethod" value="paytm" />
+              <span style="display: flex; align-items: center; gap: 4px; color: #00baf2;">
+                💳 Paytm (₹80)
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label style="display: block; font-size: 12px; font-weight: 700; color: var(--text-secondary); margin-bottom: 4px;">Message (Optional)</label>
+          <textarea id="gitMessage" rows="2" placeholder="Hi! I found a look-alike match for your bounty photo..." style="width: 100%; padding: 10px 12px; background: var(--bg-input); border: 1px solid var(--border-color); border-radius: 10px; color: var(--text-main); font-size: 13px; resize: none;"></textarea>
+        </div>
+
+        <button type="submit" id="gitSubmitBtn" class="btn primary" style="width: 100%; padding: 12px; font-size: 14px; font-weight: 800; border-radius: 50px; margin-top: 4px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+          Pay $1 / ₹80 & Request Unhide
+        </button>
+
+        <div id="gitStatusBox" style="display: none; padding: 10px; border-radius: 10px; font-size: 12px; font-weight: 700; text-align: center;"></div>
+      </form>
     </div>
   </div>
 
