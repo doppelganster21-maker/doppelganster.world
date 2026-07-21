@@ -169,12 +169,6 @@ function updateAuthUI() {
           nav.appendChild(link);
         }
       });
-
-      // Show Owner Welcome Loader once per tab session
-      if (sessionStorage.getItem('owner_welcomed') !== 'true') {
-        sessionStorage.setItem('owner_welcomed', 'true');
-        showOwnerWelcomeLoader();
-      }
     } else {
       mainNavs.forEach(nav => {
         const link = nav.querySelector('#writeBlogNavLink');
@@ -205,41 +199,6 @@ function updateAuthUI() {
       if (link) link.remove();
     });
   }
-}
-
-// Custom Full-Screen Welcome Loader for Owner
-function showOwnerWelcomeLoader() {
-  const overlay = document.createElement('div');
-  overlay.className = 'owner-loader-overlay';
-  overlay.innerHTML = `
-    <div class="owner-loader-card">
-      <div class="owner-loader-glow"></div>
-      <div class="owner-loader-icon">👑</div>
-      <div class="owner-loader-title">Welcome, Platform Owner</div>
-      <div class="owner-loader-subtitle">SECURE ADMIN INTERFACE ACTIVATED</div>
-      
-      <div class="owner-loader-terminal">
-        <div class="owner-loader-line">> Syncing credentials for doppelganster21@gmail.com...</div>
-        <div class="owner-loader-line">> Initializing secure administrative session token...</div>
-        <div class="owner-loader-line">> Unlocking global database listing removal privileges...</div>
-        <div class="owner-loader-line">> Connection established. Access Granted.</div>
-      </div>
-      
-      <div class="owner-loader-progress-container">
-        <div class="owner-loader-progress-bar"></div>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(overlay);
-  document.body.style.overflow = 'hidden';
-
-  setTimeout(() => {
-    overlay.style.opacity = '0';
-    setTimeout(() => {
-      overlay.remove();
-      document.body.style.overflow = '';
-    }, 500);
-  }, 3500);
 }
 
 // Dynamically update recent posts sidebar across pages
@@ -1166,4 +1125,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 loadItems();
 window.addEventListener('resize', () => { renderGallery(items); });
+
 

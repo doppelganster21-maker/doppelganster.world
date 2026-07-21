@@ -7,7 +7,7 @@ const searchInput = document.getElementById('searchInput');
 const nextPageBtn = document.getElementById('nextPageBtn');
 const prevPageBtn = document.getElementById('prevPageBtn');
 
-// Set your backend URL here (e.g. https://your-backend.onrender.com)
+// Set your backend API Base URL here.
 // If left as 'AUTO', the script will use the same origin as the frontend.
 let API_BASE = 'AUTO';
 

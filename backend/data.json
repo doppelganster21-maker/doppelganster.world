@@ -1,5 +1,77 @@
 [
   {
+    "id": "ai_gen_real_new_11",
+    "name": "Sophia Martinez",
+    "email": "sophia.martinez95@gmail.com",
+    "reward": 350,
+    "currency": "$",
+    "location": "Miami, USA",
+    "url": "/images/photo_sophia_martinez.jpg"
+  },
+  {
+    "id": "ai_gen_real_new_12",
+    "name": "Marcus Chen",
+    "email": "marcus.chen88@gmail.com",
+    "reward": 300,
+    "currency": "CAD",
+    "location": "Toronto, Canada",
+    "url": "/images/photo_marcus_chen.jpg"
+  },
+  {
+    "id": "ai_gen_real_new_13",
+    "name": "Chloe Dubois",
+    "email": "chloe.dubois94@gmail.com",
+    "reward": 280,
+    "currency": "€",
+    "location": "Bordeaux, France",
+    "url": "/images/photo_chloe_dubois.jpg"
+  },
+  {
+    "id": "ai_gen_real_new_14",
+    "name": "Liam O'Connor",
+    "email": "liam.oconnor91@gmail.com",
+    "reward": 220,
+    "currency": "€",
+    "location": "Dublin, Ireland",
+    "url": "/images/photo_liam_oconnor.jpg"
+  },
+  {
+    "id": "ai_gen_real_new_15",
+    "name": "Amina Hassan",
+    "email": "amina.hassan93@gmail.com",
+    "reward": 450,
+    "currency": "AED",
+    "location": "Abu Dhabi, UAE",
+    "url": "/images/photo_amina_hassan.jpg"
+  },
+  {
+    "id": "ai_gen_real_new_17",
+    "name": "Zoe Van Der Meer",
+    "email": "zoe.vandermeer96@gmail.com",
+    "reward": 310,
+    "currency": "€",
+    "location": "Amsterdam, Netherlands",
+    "url": "/images/photo_zoe_vandermeer.jpg"
+  },
+  {
+    "id": "ai_gen_real_new_19",
+    "name": "Mateo Silva",
+    "email": "mateo.silva89@gmail.com",
+    "reward": 270,
+    "currency": "$",
+    "location": "Buenos Aires, Argentina",
+    "url": "/images/photo_mateo_silva.jpg"
+  },
+  {
+    "id": "ai_gen_real_new_21",
+    "name": "Amara Okoye",
+    "email": "amara.okoye91@gmail.com",
+    "reward": 300,
+    "currency": "$",
+    "location": "Lagos, Nigeria",
+    "url": "/images/photo_amara_okoye.jpg"
+  },
+  {
     "id": "ai_real_08",
     "name": "Camille Laurent",
     "email": "camille.laurent95@gmail.com",
