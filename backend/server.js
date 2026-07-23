@@ -97,6 +97,9 @@ app.get("/api/images", async (req, res) => {
 
     if (normalizedUrl) seenUrls.add(normalizedUrl);
     if (normalizedEmail) seenEmails.add(normalizedEmail);
+    uniqueCombined.push(item);
+  }
+
   uniqueCombined.sort((a, b) => {
     const timeA = new Date(a.created_at || a.date || a.timestamp || 0).getTime() || (parseInt(a.id) || 0);
     const timeB = new Date(b.created_at || b.date || b.timestamp || 0).getTime() || (parseInt(b.id) || 0);
