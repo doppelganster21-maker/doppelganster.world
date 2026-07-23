@@ -512,13 +512,22 @@ function getOptimizedImageUrl(url, transforms) {
   return url;
 }
 
+let mobileVisibleCount = 6;
+
 function renderGallery(itemsList) {
   if (!galleryGrid) return;
   galleryGrid.innerHTML = '';
   const searchVal = searchInput ? searchInput.value.toLowerCase() : '';
   
+  // Sort strictly in upload sequence (newest first, no random order)
+  const sortedItems = [...itemsList].sort((a, b) => {
+    const timeA = new Date(a.created_at || a.date || a.timestamp || 0).getTime() || (parseInt(a.id) || 0);
+    const timeB = new Date(b.created_at || b.date || b.timestamp || 0).getTime() || (parseInt(b.id) || 0);
+    return timeB - timeA;
+  });
+
   const currentUser = getAuthUser();
-  const filtered = itemsList.filter(item => {
+  const filtered = sortedItems.filter(item => {
     const matchesSearch = (item.name || '').toLowerCase().includes(searchVal);
     if (!matchesSearch) return false;
     
@@ -535,12 +544,23 @@ function renderGallery(itemsList) {
     }
     return true;
   });
-  const perPage = getItemsPerPage();
-  const start = currentPage * perPage;
-  const paged = filtered.slice(start, start + perPage);
 
-  if (prevPageBtn) prevPageBtn.disabled = currentPage === 0;
-  if (nextPageBtn) nextPageBtn.disabled = (start + perPage) >= filtered.length;
+  const isMobile = window.innerWidth <= 820;
+  const paginationContainer = document.querySelector('.pagination');
+
+  let paged = [];
+  if (isMobile) {
+    if (paginationContainer) paginationContainer.style.display = 'none';
+    paged = filtered.slice(0, mobileVisibleCount);
+  } else {
+    if (paginationContainer) paginationContainer.style.display = 'flex';
+    const perPage = getItemsPerPage();
+    const start = currentPage * perPage;
+    paged = filtered.slice(start, start + perPage);
+
+    if (prevPageBtn) prevPageBtn.disabled = currentPage === 0;
+    if (nextPageBtn) nextPageBtn.disabled = (start + perPage) >= filtered.length;
+  }
 
   if (paged.length === 0) {
     if (emptyMsg) emptyMsg.style.display = 'block';
@@ -1161,5 +1181,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 loadItems();
 window.addEventListener('resize', () => { renderGallery(items); });
+
+// Mobile Infinite Scroll listener
+let isInfiniteScrolling = false;
+window.addEventListener('scroll', () => {
+  if (window.innerWidth <= 820) {
+    const scrollPosition = window.innerHeight + window.scrollY;
+    const threshold = document.documentElement.scrollHeight - 450;
+    if (scrollPosition >= threshold && !isInfiniteScrolling) {
+      if (items && mobileVisibleCount < items.length) {
+        isInfiniteScrolling = true;
+        mobileVisibleCount += 6;
+        renderGallery(items);
+        setTimeout(() => { isInfiniteScrolling = false; }, 300);
+      }
+    }
+  }
+});
 
 
