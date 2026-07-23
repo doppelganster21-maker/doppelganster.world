@@ -28,27 +28,41 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 let supabaseClient = null;
 
+function getSupabaseLib() {
+  if (window.supabase && typeof window.supabase.createClient === 'function') {
+    return window.supabase;
+  }
+  if (window.supabaseJs && typeof window.supabaseJs.createClient === 'function') {
+    return window.supabaseJs;
+  }
+  return null;
+}
+
 function initSupabaseAuth() {
-  if (window.supabase) {
-    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  const lib = getSupabaseLib();
+  if (lib) {
+    supabaseClient = lib.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     setupSupabaseAuthListeners();
   } else {
-    const script = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
-    script.onload = () => {
-      if (window.supabase) {
-        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        setupSupabaseAuthListeners();
-      }
-    };
-    document.head.appendChild(script);
+    const existing = document.querySelector('script[src*="supabase-js"]');
+    if (!existing) {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+      script.onload = () => {
+        const loadedLib = getSupabaseLib();
+        if (loadedLib) {
+          supabaseClient = loadedLib.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+          setupSupabaseAuthListeners();
+        }
+      };
+      document.head.appendChild(script);
+    }
   }
 }
 
 function setupSupabaseAuthListeners() {
   if (!supabaseClient) return;
 
-  // Listen to auth state changes (e.g. after Google OAuth redirect)
   supabaseClient.auth.onAuthStateChange((event, session) => {
     if (session && session.user) {
       const user = session.user;
@@ -64,7 +78,6 @@ function setupSupabaseAuthListeners() {
     }
   });
 
-  // Initial session check
   supabaseClient.auth.getSession().then(({ data: { session } }) => {
     if (session && session.user) {
       const user = session.user;
@@ -87,26 +100,32 @@ async function triggerRealClerkGoogleAuthModal(onSuccessCallback) {
   }
 
   if (!supabaseClient) {
-    if (window.supabase) {
-      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const lib = getSupabaseLib();
+    if (lib) {
+      supabaseClient = lib.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     } else {
-      alert("Auth is loading, please try again in a moment.");
+      alert("Authentication library is loading. Please try again in 2 seconds.");
+      initSupabaseAuth();
       return false;
     }
   }
 
-  const { error } = await supabaseClient.auth.signInWithOAuth({
-    provider: 'google',
-    options: {
-      redirectTo: window.location.origin
-    }
-  });
+  try {
+    const redirectUrl = window.location.origin;
+    const { error } = await supabaseClient.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: redirectUrl
+      }
+    });
 
-  if (error) {
-    console.error("Supabase Auth Error:", error.message);
-    if (typeof setStatus === 'function') {
-      setStatus("Google Sign In failed: " + error.message, "error");
+    if (error) {
+      console.error("Supabase Auth Error:", error);
+      alert("Google Sign-In failed: " + error.message);
     }
+  } catch (err) {
+    console.error("Supabase Auth Exception:", err);
+    alert("Google Sign-In exception: " + err.message);
   }
   return false;
 }
