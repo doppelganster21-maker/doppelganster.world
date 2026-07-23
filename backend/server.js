@@ -1140,16 +1140,17 @@ app.use((req, res, next) => {
   res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
   res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
 
-  // Cache-control: long cache for static assets, must-revalidate for HTML
-  // IMPORTANT: no-store breaks bfcache — use no-cache instead
+  // Cache-control: strict no-store for HTML to prevent stale browser caching
   const url = req.path;
   if (/\.(css|js|woff2?|ttf|otf|eot|svg|png|jpg|jpeg|webp|gif|ico|mp4|webm)$/i.test(url)) {
     res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
   } else if (/\.html?$/.test(url) || url === "/" || !url.includes(".")) {
-    // no-cache allows bfcache (back/forward); browser still revalidates with server
-    res.setHeader("Cache-Control", "no-cache");
+    res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0");
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
+    res.setHeader("Surrogate-Control", "no-store");
   } else {
-    res.setHeader("Cache-Control", "public, max-age=86400");
+    res.setHeader("Cache-Control", "no-cache, must-revalidate");
   }
   next();
 });

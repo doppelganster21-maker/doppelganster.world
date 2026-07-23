@@ -83,11 +83,11 @@
     href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=optional" /></noscript>
 
   <!-- Critical CSS -->
-  <link rel="stylesheet" href="/styles.css" />
-  <link rel="preload" href="/ad-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="/ad-styles.css" /></noscript>
-  <link rel="preload" href="/cookie-consent.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="/cookie-consent.css" /></noscript>
+  <link rel="stylesheet" href="/styles.css?v=2.0.0" />
+  <link rel="preload" href="/ad-styles.css?v=2.0.0" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="/ad-styles.css?v=2.0.0" /></noscript>
+  <link rel="preload" href="/cookie-consent.css?v=2.0.0" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="/cookie-consent.css?v=2.0.0" /></noscript>
 
   <!-- Critical CSS Theme configuration: run inline immediately to prevent FOUC -->
   <script>
@@ -102,7 +102,7 @@
      crossorigin="anonymous"></script>
 
   <!-- theme.js: non-blocking deferred loading of DOM handlers -->
-  <script src="/theme.js" defer></script>
+  <script src="/theme.js?v=2.0.0" defer></script>
 
   <!-- Supabase SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -555,11 +555,11 @@
   </footer>
 
   <!-- App scripts: defer keeps them off critical path -->
-  <script src="/script.js" defer></script>
-  <script src="/chat.js" defer></script>
-  <script src="/ad-components.js" defer></script>
-  <script src="/cookie-consent.js" defer></script>
-  <script src="/breadcrumb.js" defer></script>
+  <script src="/script.js?v=2.0.0" defer></script>
+  <script src="/chat.js?v=2.0.0" defer></script>
+  <script src="/ad-components.js?v=2.0.0" defer></script>
+  <script src="/cookie-consent.js?v=2.0.0" defer></script>
+  <script src="/breadcrumb.js?v=2.0.0" defer></script>
 
   <!-- Analytics: loaded on idle, never contributes to TBT -->
   <script>

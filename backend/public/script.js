@@ -1,5 +1,29 @@
 // script.js - Doppelganger Application Client Logic
 
+// --------------------------------------------------------------------------
+// AUTOMATIC CACHE-BUSTING & SERVICE WORKER PURGE (ELIMINATES STALE BROWSER CACHE)
+// --------------------------------------------------------------------------
+(function purgeStaleBrowserCaches() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    }).catch(function(err) {
+      console.warn('Service worker unregister error:', err);
+    });
+  }
+  if ('caches' in window) {
+    caches.keys().then(function(names) {
+      for (let name of names) {
+        caches.delete(name);
+      }
+    }).catch(function(err) {
+      console.warn('CacheStorage purge error:', err);
+    });
+  }
+})();
+
 const uploadForm = document.getElementById('uploadForm');
 const statusEl = document.getElementById('status');
 const galleryGrid = document.getElementById('galleryGrid');
