@@ -1242,6 +1242,7 @@ app.get("/*.js", (req, res, next) => {
     console.error(`Error minifying JS for ${req.path}:`, err);
     next(); // fallback to static serving
   }
+});
 // ---------------- CRITICAL ADS.TXT, ROBOTS.TXT & SITEMAP ROUTES ----------------
 app.get("/ads.txt", (req, res) => {
   const adsPath = path.join(__dirname, "public", "ads.txt");
