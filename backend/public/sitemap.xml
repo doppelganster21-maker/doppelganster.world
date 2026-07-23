@@ -51,6 +51,12 @@
     <priority>0.4</priority>
   </url>
   <url>
+    <loc>https://www.doppelganger.world/the-viral-ai-doppelganger-trend-how-1-million-people-found-their-twin-strangers-online.html</loc>
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.doppelganger.world/why-everyone-not-match.html</loc>
     <lastmod>2026-07-16</lastmod>
     <changefreq>weekly</changefreq>
@@ -477,6 +483,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.doppelganger.world/category/technology</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.doppelganger.world/category/sciencedna</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -528,11 +539,6 @@
   </url>
   <url>
     <loc>https://www.doppelganger.world/category/entertainment</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.doppelganger.world/category/technology</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
