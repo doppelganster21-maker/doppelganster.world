@@ -11,18 +11,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7208166578795598"
      crossorigin="anonymous"></script>
   <script src="theme.js"></script>
-  <!-- PERFORMANCE: Clerk deferred -->
-  <script>
-    window.addEventListener('load', function() {
-      var s = document.createElement('script');
-      s.async = true;
-      s.crossOrigin = 'anonymous';
-      s.setAttribute('data-clerk-publishable-key', 'pk_live_Y2xlcmsuZG9wcGVsZ2FuZ2VyLndvcmxkJA');
-      s.onload = function() { window.Clerk && window.Clerk.load(); };
-      s.src = 'https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js';
-      document.head.appendChild(s);
-    });
-  </script>
+
   <script>
     // Security redirect: immediately eject non-owner before DOM parses
     const AUTH_KEY = 'doppel_google_user';
@@ -545,8 +534,11 @@
       const signOutBtn = document.getElementById('signOutBtn');
       if (signOutBtn) {
         signOutBtn.addEventListener('click', async () => {
-          if (window.Clerk && typeof window.Clerk.signOut === 'function') {
-            try { await window.Clerk.signOut(); } catch {}
+          if (window.supabase) {
+            try {
+              const client = window.supabase.createClient('https://orqjslczhklgqbrxpoxt.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ycWpzbGN6aGtsZ3Ficnhwb3h0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUxNzQ1NDMsImV4cCI6MjA3MDc1MDU0M30.1_vlVf0_4Y_wmn0Nv82rQxNrnzbJOyeTS5zQAUWmjAM');
+              await client.auth.signOut();
+            } catch (e) {}
           }
           localStorage.removeItem(AUTH_KEY);
           window.location.replace('/');

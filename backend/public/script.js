@@ -20,76 +20,93 @@ let currentPage = 0;
 let items = [];
 
 // --------------------------------------------------------------------------
-// CLERK AUTHENTICATION INTEGRATION (app_3GZ3JnSXBuJ8ogy8xOSB7xcUunl)
+// SUPABASE GOOGLE AUTHENTICATION INTEGRATION
 // --------------------------------------------------------------------------
 const AUTH_KEY = 'doppel_google_user';
+const SUPABASE_URL = 'https://orqjslczhklgqbrxpoxt.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ycWpzbGN6aGtsZ3Ficnhwb3h0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUxNzQ1NDMsImV4cCI6MjA3MDc1MDU0M30.1_vlVf0_4Y_wmn0Nv82rQxNrnzbJOyeTS5zQAUWmjAM';
 
-const CLERK_PUBLISHABLE_KEY = 'pk_test_bWFnaWNhbC1lc2NhcmdvdC02LmNsZXJrLmFjY291bnRzLmRldiQ';
+let supabaseClient = null;
 
-async function initClerkSDK() {
-  if (!window.Clerk) {
-    let attempts = 0;
-    const interval = setInterval(() => {
-      attempts++;
-      if (window.Clerk && typeof window.Clerk.load === 'function') {
-        clearInterval(interval);
-        setupClerkListeners();
-      } else if (attempts > 60) {
-        clearInterval(interval);
-      }
-    }, 100);
+function initSupabaseAuth() {
+  if (window.supabase) {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    setupSupabaseAuthListeners();
   } else {
-    setupClerkListeners();
-  }
-}
-
-function setupClerkListeners() {
-  try {
-    syncClerkUserSession();
-
-    window.Clerk.addListener(({ user }) => {
-      if (user) {
-        const primaryEmail = user.primaryEmailAddress ? user.primaryEmailAddress.emailAddress : '';
-        const authUser = {
-          id: user.id,
-          email: primaryEmail.toLowerCase(),
-          name: user.fullName || user.firstName || primaryEmail.split('@')[0],
-          picture: user.imageUrl || ''
-        };
-        setAuthUser(authUser);
-      } else {
-        setAuthUser(null);
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+    script.onload = () => {
+      if (window.supabase) {
+        supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        setupSupabaseAuthListeners();
       }
-    });
-  } catch (err) {
-    console.warn('Clerk listener setup notice:', err);
-  }
-}
-
-function syncClerkUserSession() {
-  if (window.Clerk && window.Clerk.user) {
-    const user = window.Clerk.user;
-    const primaryEmail = user.primaryEmailAddress ? user.primaryEmailAddress.emailAddress : '';
-    const authUser = {
-      id: user.id,
-      email: primaryEmail.toLowerCase(),
-      name: user.fullName || user.firstName || primaryEmail.split('@')[0],
-      picture: user.imageUrl || ''
     };
-    setAuthUser(authUser);
+    document.head.appendChild(script);
   }
 }
 
-function triggerRealClerkGoogleAuthModal(onSuccessCallback) {
+function setupSupabaseAuthListeners() {
+  if (!supabaseClient) return;
+
+  // Listen to auth state changes (e.g. after Google OAuth redirect)
+  supabaseClient.auth.onAuthStateChange((event, session) => {
+    if (session && session.user) {
+      const user = session.user;
+      const authUser = {
+        id: user.id,
+        email: (user.email || '').toLowerCase(),
+        name: user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split('@')[0] || 'User',
+        picture: user.user_metadata?.avatar_url || user.user_metadata?.picture || ''
+      };
+      setAuthUser(authUser);
+    } else if (event === 'SIGNED_OUT') {
+      setAuthUser(null);
+    }
+  });
+
+  // Initial session check
+  supabaseClient.auth.getSession().then(({ data: { session } }) => {
+    if (session && session.user) {
+      const user = session.user;
+      const authUser = {
+        id: user.id,
+        email: (user.email || '').toLowerCase(),
+        name: user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split('@')[0] || 'User',
+        picture: user.user_metadata?.avatar_url || user.user_metadata?.picture || ''
+      };
+      setAuthUser(authUser);
+    }
+  });
+}
+
+async function triggerRealClerkGoogleAuthModal(onSuccessCallback) {
   const current = getAuthUser();
   if (current) {
     if (typeof onSuccessCallback === 'function') onSuccessCallback(current);
     return true;
   }
 
-  if (window.Clerk && typeof window.Clerk.openSignIn === 'function') {
-    window.Clerk.openSignIn();
-    return false;
+  if (!supabaseClient) {
+    if (window.supabase) {
+      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    } else {
+      alert("Auth is loading, please try again in a moment.");
+      return false;
+    }
+  }
+
+  const { error } = await supabaseClient.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo: window.location.origin
+    }
+  });
+
+  if (error) {
+    console.error("Supabase Auth Error:", error.message);
+    if (typeof setStatus === 'function') {
+      setStatus("Google Sign In failed: " + error.message, "error");
+    }
   }
   return false;
 }
@@ -325,7 +342,7 @@ window.deleteUserPhoto = async function(id) {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  initClerkSDK();
+  initSupabaseAuth();
   updateAuthUI();
   setupGalleryTabs();
   loadRecentBlogsInSidebar();
@@ -338,11 +355,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   if (signOutBtn) {
     signOutBtn.addEventListener('click', async () => {
-      if (window.Clerk && typeof window.Clerk.signOut === 'function') {
-        try { await window.Clerk.signOut(); } catch {}
+      if (supabaseClient) {
+        try { await supabaseClient.auth.signOut(); } catch (e) {}
       }
       setAuthUser(null);
-      setStatus("Signed out successfully.", "info");
+      if (typeof setStatus === 'function') setStatus("Signed out successfully.", "info");
     });
   }
 

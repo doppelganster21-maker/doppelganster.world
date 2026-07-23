@@ -195,20 +195,9 @@ const compile = () => {
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7208166578795598"
      crossorigin="anonymous"></script>
   <script src="/theme.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <!-- PERFORMANCE: Clerk deferred after page load -->
-  <script>
-    window.addEventListener('load', function() {
-      var key = "${process.env.CLERK_PUBLISHABLE_KEY || 'pk_live_Y2xlcmsuZG9wcGVsZ2FuZ2VyLndvcmxkJA'}";
-      if (!key) return;
-      var s = document.createElement('script');
-      s.async = true; s.crossOrigin = 'anonymous';
-      s.setAttribute('data-clerk-publishable-key', key);
-      s.onload = function() { window.Clerk && window.Clerk.load(); };
-      s.src = 'https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js';
-      document.head.appendChild(s);
-    });
-  </script>
+
 
   <style>
     .breadcrumbs {
