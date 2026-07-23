@@ -448,7 +448,15 @@ const compile = () => {
           <span>${readTime}</span>
         </div>
 
-        <img src="/${imageUrl}" alt="${escTitle}" style="width: 100%; max-height: 420px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 24px;" />
+        <img src="/${imageUrl}" alt="${escTitle}" style="width: 100%; max-height: 420px; object-fit: cover; border-radius: 12px; border: 1px solid var(--border-color); margin-bottom: 20px;" />
+
+        <div class="share-buttons-bar" style="display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; align-items: center; background: rgba(255,255,255,0.02); padding: 12px 16px; border-radius: 12px; border: 1px solid var(--border-color);">
+          <span style="font-size: 12px; font-weight: 800; color: var(--text-muted); letter-spacing: 0.05em;">VIRAL SHARE:</span>
+          <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent('https://www.doppelganger.world/' + slug + '.html')}" target="_blank" rel="noopener" style="padding: 6px 14px; background: rgba(255,255,255,0.06); border: 1px solid var(--border-color); border-radius: 20px; font-size: 12px; font-weight: 600; color: var(--text-main); text-decoration: none;">𝕏 Twitter</a>
+          <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(title + ' - https://www.doppelganger.world/' + slug + '.html')}" target="_blank" rel="noopener" style="padding: 6px 14px; background: rgba(37,211,102,0.15); border: 1px solid rgba(37,211,102,0.3); border-radius: 20px; font-size: 12px; font-weight: 600; color: #25D366; text-decoration: none;">💬 WhatsApp</a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://www.doppelganger.world/' + slug + '.html')}" target="_blank" rel="noopener" style="padding: 6px 14px; background: rgba(24,119,242,0.15); border: 1px solid rgba(24,119,242,0.3); border-radius: 20px; font-size: 12px; font-weight: 600; color: #1877F2; text-decoration: none;">📘 Facebook</a>
+          <button onclick="navigator.clipboard.writeText(window.location.href); alert('Article link copied!');" style="padding: 6px 14px; background: var(--accent-gradient); border: none; border-radius: 20px; font-size: 12px; font-weight: 700; color: #fff; cursor: pointer;">🔗 Copy Link</button>
+        </div>
 
         <div class="article-body">
           ${bodyContent}

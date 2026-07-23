@@ -1242,6 +1242,32 @@ app.get("/*.js", (req, res, next) => {
     console.error(`Error minifying JS for ${req.path}:`, err);
     next(); // fallback to static serving
   }
+// ---------------- CRITICAL ADS.TXT, ROBOTS.TXT & SITEMAP ROUTES ----------------
+app.get("/ads.txt", (req, res) => {
+  const adsPath = path.join(__dirname, "public", "ads.txt");
+  res.setHeader("Content-Type", "text/plain; charset=utf-8");
+  if (fs.existsSync(adsPath)) {
+    return res.sendFile(adsPath);
+  }
+  return res.send("google.com, pub-7208166578795598, DIRECT, f08c47fec0942fa0\n");
+});
+
+app.get("/robots.txt", (req, res) => {
+  const robotsPath = path.join(__dirname, "public", "robots.txt");
+  res.setHeader("Content-Type", "text/plain; charset=utf-8");
+  if (fs.existsSync(robotsPath)) {
+    return res.sendFile(robotsPath);
+  }
+  return res.send("User-agent: *\nAllow: /\nSitemap: https://www.doppelganger.world/sitemap.xml\n");
+});
+
+app.get("/sitemap.xml", (req, res) => {
+  const sitemapPath = path.join(__dirname, "public", "sitemap.xml");
+  res.setHeader("Content-Type", "application/xml; charset=utf-8");
+  if (fs.existsSync(sitemapPath)) {
+    return res.sendFile(sitemapPath);
+  }
+  return res.status(404).send("<error>Sitemap not found</error>");
 });
 
 app.use(express.static(path.join(__dirname, "public"), { etag: true, lastModified: true }));
